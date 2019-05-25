@@ -1,0 +1,61 @@
+<style>
+form{
+	padding-bottom:45px;
+	margin-top:-45px;
+}
+
+.IT_loginFormBox{
+	border:5px solid black;
+	border-top:none;
+}
+
+.container>div>li{
+	float: left;
+	list-style: none;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.IT_loginFormBox > #button, .IT_loginFormBox > #button1, .IT_loginFormBox > #button2 {
+	float: right;
+	margin-top:-155px;
+	margin-right:50px;
+	width: 120px;
+	height: 110px;
+}
+
+.login_input {
+	width: 260px;
+	height: 45px;
+	margin: 5px;
+	margin-left: -15px;
+}
+
+.IT_loginFormBox > ul > div{
+	padding:50px;
+}
+
+#idPw{
+	float:left;
+	margin-top:50px;
+	margin-left:-260px;
+	font-weight:bold;
+}
+
+#hr{
+	width:400px;
+	border-style:double;
+	border-width:3px;
+	border-color:#000;
+}
+
+.IT_loginFormBox > p{
+	font-size:14px;
+	color:black;
+}
+
+.IT_loginFormBox > p, .IT_loginFormBox > a{
+	font-weight:bold;
+}
+
+</style>

@@ -26,6 +26,13 @@ public class AdvertismentTests {
 		//assertEquals(0,);
 		
 	}
+	@Test
+	public void getAdv() {
+		AdvertisementVO param = new AdvertisementVO();
+		param.setAdv_display("top");
+		System.out.println(mapper.getAdvertisement(param));
+		
+	}
 	
 
 }

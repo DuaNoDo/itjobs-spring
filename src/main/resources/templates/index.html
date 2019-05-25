@@ -1,0 +1,470 @@
+<<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>ITJobs</title>
+
+	<meta name="keywords" content="IT,Jobs,ITJobs">
+	<meta name="author" content="Won">
+	<link rel="icon" type="image/png" href="../static/images/icon.png" th:href="@{/images/icon.png}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- START: Styles -->
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
+    
+    <link rel="stylesheet" href="../static/css/combined.css" th:href="@{/css/combined.css}">
+					
+    <!-- END: Styles -->
+	<style>
+	</style>
+	<script type="text/javascript"
+		src="http://code.jquery.com/jquery-2.1.0.min.js">
+	</script>
+
+</head>
+
+<body>
+
+
+
+    <header class="header">
+        <!--
+        START: Navbar
+    -->
+    
+        <nav class="navbar navbar-top navbar-sticky navbar-transparent navbar-white-text-on-top">
+            <div class="container">
+                <div class="nav-table">
+                    <a href="index.jsp" class="nav-logo">
+                        <img src="../static/images/logo-light.png" th:src="@{/images/logo-light.png}" alt="" width="85" class="nav-logo-onscroll">
+                        <img src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="" width="85">
+                    </a>
+                    
+                    <ul class="nav nav-right hidden-md-down" data-nav-mobile="#nav-mobile">
+                    	<li>
+                    		<table>
+                    		<tbody>
+                    			<tr>
+                    				<form method="get" action="IT_search.jsp" name="search" >
+	                    				<td style="border-bottom:1.5px solid rgba(0,0,0,0.3);">
+		                    				<select name="sort" class="sort" style="font-color:#AAAAAA;" >
+												<option value="adv_company">회사</option>
+												<option value="adv_content">내용</option>
+												<option value="adv_name">광고명</option>
+											</select>
+										</td>
+	                    				<td style="border-bottom:1.5px solid rgba(0,0,0,0.3);">
+	                    					<input class="form-control" type="text" name="keyword" placeholder="내용을 입력하세요" size="30" style="background:rgba(255,255,255,0.3); border-radius:8px;">
+	                    				</td>
+	                    				<td>
+	                    					<input  TYPE="IMAGE" class="searchImg" src="assets/images/search.png" th:src="@{/images/search.png}" weight="25px" height="25px" onclick="document.search.submit()"  align="absmiddle">
+	                    				</td>
+									</form>
+								</tr>
+								</tbody>
+                    		</table>
+                    	</li>
+
+                        <li id="dropdown">
+                            <a href="#">상세검색</a>
+                            <div class="dropdown-content">
+							    <a href="#">구인정보</a>
+							    <a href="#">채용정보</a>
+							</div>
+						</li>
+                        
+						
+                        <li>
+                            <a href="board/list.jsp">커뮤니티</a>
+                        </li>
+                        
+                        <li id="dropdown">
+                            <a href="#IT_sign.jsp">마이페이지</a>
+                            <div class="dropdown-content">
+							    <a href="#">Link 1</a>
+							    <a href="#">Link 2</a>
+							    <a href="#">Link 3</a>
+							</div>
+						</li>
+              
+                    </ul>
+
+                    
+                </div>
+            </div>
+        </nav>
+        <!-- END: Navbar -->
+
+    </header>
+
+    <!--
+    START: Navbar Mobile
+-->
+    <nav class="navbar navbar-full navbar-align-center" id="nav-mobile">
+        <div class="navbar-bg">
+            <div class="bg-image" style="background-image: url('../static/images/bg-menu.jpg')"></div>
+        </div>
+        <div class="nav-table">
+            <div class="nav-row">
+                <div class="container">
+                    <div class="nav-header">
+
+                        <div class="nav-logo">
+                            <a href="index.jsp" class="nav-logo">
+                                <img src="assets/images/logo-light.svg" alt="" width="85">
+                            </a>
+                        </div>
+
+                        <div class="nav-close navbar-full-toggle">
+                            <span class="icon-close"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-row-full nav-row">
+                <div class="nano">
+                    <div class="nano-content">
+                        <div class="nav-table">
+                            <div class="nav-row nav-row-full nav-row-center navbar-mobile-content">
+                                <ul class="nav">
+                                    <!-- Here will be inserted menu from [data-mobile-menu="#nav-mobile"] -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-row">
+                <div class="container">
+                    <div class="nav-social">
+                        <ul>
+                            <li><a href="https://twitter.com/nkdevv"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.facebook.com/unvabdesign/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://dribbble.com/_nK"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="https://www.instagram.com/unvab/"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- END: Navbar Mobile -->
+
+
+    <div class="main">
+
+        <!-- START: Header Title -->
+        <div class="header-title header-title-full">
+            <div class="bg-image">
+                <!-- <div style="background-image: url('assets/images/city1.jpg');"></div> -->
+                <!-- <div class="bg-image-overlay" style="background-color: rgba(00, 00, 00, 0.2);"></div> -->
+                <div class="bg-image-overlay" style="background: #ef32d9;  
+													 background: -webkit-linear-gradient(to bottom, #000000, #403F95);  
+													 background: linear-gradient(to bottom, #000000, #403F95);"></div>
+            </div>
+            <div class="m-list">
+            	<div class="container" style="margin-bottom:0px;">
+	            	<ul class="mm-list">
+	            		<li><button class="button" onclick="window.location.href='IT_company_sortSearch.jsp?companySort=webDevelope'" style="width:100%; height:100%;">웹개발자</button></li>
+	            		<li><button class="button" onclick="window.location.href='IT_company_sortSearch.jsp?companySort=applicationDevelope'" style="width:100%; height:100%;">응용프로그램개발자</button></li>
+	            		<li><button class="button" onclick="window.location.href='IT_company_sortSearch.jsp?companySort=systemDevelope'" style="width:100%; height:100%;">시스템개발자</button></li>
+	            		<li><button class="button" onclick="window.location.href='IT_company_sortSearch.jsp?companySort=serverNetworkSecurity'" style="width:100%; height:100%;">네트워크보안</button></li>
+	            		<li><button class="button" onclick="window.location.href='IT_company_sortSearch.jsp?companySort=database'" style="width:100%; height:100%;">데이터베이스</button></li>
+	            		<li><button class="button" onclick="window.location.href='IT_company_sortSearch.jsp?companySort=publishing'" style="width:100%; height:100%;">퍼블리셔</button></li>
+	            		<li><button class="button" onclick="window.location.href='IT_company_sortSearch.jsp?companySort=webDesign'" style="width:100%; height:100%;">웹디자이너</button></li>
+	            		<li><button class="button" onclick="window.location.href='IT_company_sortSearch.jsp?companySort=gameDevelope'" style="width:100%; height:100%;">게임개발자</button></li>
+	            		<li><button class="button" onclick="window.location.href='IT_company_sortSearch.jsp?companySort=mobileDevelope'" style="width:100%; height:100%;">모바일개발자</button></li>
+	            		<li><button class="button" onclick="window.location.href='IT_company_sortSearch.jsp?companySort=artificialIntelligence'" style="width:100%; height:100%;">인공지능</button></li>
+	            	</ul>
+            	</div>
+            </div>
+            <div class="header-table">
+                <div class="header-table-cell">
+
+				<!-- START: Carousel -->
+                <div class="carousel-2 carousel-x2 carousel-no-margin carousel-all-visible blog-isotope" data-autoplay="1000" data-dots="true">
+                    <div class="carousel-inner">
+					
+                        <div>
+                            <div>
+                              <div class="pl-10 pr-10">
+                                    <div class="blog-post">
+                                        <div class="post-thumb">
+                                        	
+                                            <a href="blog-single.html">
+                                                <img src="assets/images/post-1-nexon.jpg" th:src="@{/images/post-1-nexon.jpg}" alt="사진이 없잖아?" class="img-stretch" width="300px" height="300px">
+                                            </a>
+                                            <div class="post-category"><a href="#">Public employment</a></div>
+                                        </div>
+                                        <h2 class="post-title h4"><a href="blog-single.html">Nexon Company</a></h2>
+
+                                        <div class="post-date">
+                                            03th ~ 18th sep. 2018
+                                        </div>
+
+                                        <div class="post-text">
+                                            <p>게임 프로그래밍, 게임기획, 게임아트, 기업디자인, 프로덕션게임</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div>
+                              <div class="pl-10 pr-10">
+                                    <div class="blog-post">
+                                        <div class="post-thumb">
+                                            <a href="blog-single.html">
+                                                <img src="../static/images/post-2-netmarble.jpg" th:src="@{/images/post-2-netmarble.jpg}" alt="" class="img-stretch" width="300px" height="300px">
+                                            </a>
+                                            <div class="post-category"><a href="#">New employment</a></div>
+                                        </div>
+                                        <h2 class="post-title h4"><a href="blog-single.html">Netmarble Company</a></h2>
+
+                                        <div class="post-date">
+                                            03rd sep. ~ 01st oct. 2018
+                                        </div>
+
+                                        <div class="post-text">
+                                            <p>게임 퍼블리싱 : 사업PM (국내, 글로벌) / 마케팅 (국내, 글로벌)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div>
+                              <div class="pl-10 pr-10">
+                                    <div class="blog-post">
+                                        <div class="post-thumb">
+                                            <a href="blog-single.html">
+                                                <img src="assets/images/post-3-IBKSystem.jpg" th:src="@{/images/post-3-IBKSystem.jpg}" alt="" class="img-stretch" width="300px" height="300px">
+                                            </a>
+                                            <div class="post-category"><a href="#">Career employee</a></div>
+                                        </div>
+                                        <h2 class="post-title h4"><a href="blog-single.html">IBK System</a></h2>
+
+                                        <div class="post-date">
+                                             30th Aug. ~ 12th sep. 2018
+                                        </div>
+
+                                        <div class="post-text">
+                                            <p>2018년 경력직원 모집 (금융개발(SI) / 시스템운영(SM) / 웹·앱개발자)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div>
+                              <div class="pl-10 pr-10">
+                                    <div class="blog-post">
+                                        <div class="post-thumb">
+                                            <a href="blog-single.html">
+                                                <img src="assets/images/post-4-joycity.jpg" th:src="@{/images/post-4-joycity.jpg}" alt="" class="img-stretch" width="300px" height="300px">
+                                            </a>
+                                            <div class="post-category"><a href="#">New employment</a></div>
+                                        </div>
+                                        <h2 class="post-title h4"><a href="blog-single.html">JoyCity</a></h2>
+
+                                        <div class="post-date">
+                                            03rd ~ 10th sep. 2018
+                                        </div>
+
+                                        <div class="post-text">
+                                            <p>자사 모바일 Platform iOS SDK 개발 및 유지보수</p>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div>
+                              <div class="pl-10 pr-10">
+                                    <div class="blog-post">
+                                        <div class="post-thumb">
+                                            <a href="blog-single.html">
+                                                <img src="assets/images/post-5-tmon.jpg" th:src="@{/images/post-5-tmon.jpg}" alt="" class="img-stretch" width="300px" height="300px">
+                                            </a>
+                                            <div class="post-category"><a href="#">Career employee</a></div>
+                                        </div>
+                                        <h2 class="post-title h4"><a href="blog-single.html">TMON</a></h2>
+
+                                        <div class="post-date">
+                                            At all times
+                                        </div>
+
+                                        <div class="post-text">
+                                            <p>부분별 신입 / 경력사원 채용</p>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                            </div>
+
+                        </div>
+                        
+                        <div th:each="a : ${Adv}">
+							<div>
+                              <div class="pl-10 pr-10">
+                                    <div class="blog-post">
+                                        <div class="post-thumb">
+                                            <a href="IT_search_content.jsp?adv_num=">
+                                            	
+                                                <img th:src="${{a.adv_img}}" alt="사진이 없잖아?" class="img-stretch" width="270px" height="270px">
+                                            </a>
+                                            <div class="post-category"><a href="#"><text th:text="${{a.adv_name}}"/></a></div>
+                                        </div>
+                                        <h2 class="post-title h4"><a href="#"><text th:text="${{a.adv_company}}"/></a></h2>
+
+                                        <div class="post-date">
+                                            03th ~ 18th sep. 2018
+                                        </div>
+
+                                        <div class="post-text">
+                                            <text th:text="${{a.adv_content}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gap-1"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- END: Carousel -->
+                </div>
+                 
+            </div>
+
+        </div>
+		<a href="topadvertisement/writeForm.jsp">광고 등록하러 가기</a>
+		<table><tr th:each="a : ${Adv}" ><td th:text="${{a.adv_name}}"/> </tr></table>
+		
+        <div id="header-title-scroll-down"></div>
+
+        <!-- END: Header Title -->
+
+        <!-- START: Gold -->
+        <div class="gold box bg-white" id="projects">
+            <div class="gap-4 mt-5"></div>
+
+            <h2 class="text-xs-center display-4">Gold</h2>
+
+            <div class="gap mnt-6"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="text-xs-center">골드 상품
+                        </div>
+                        <a href="advertisement/writeForm.jsp">광고 등록하러 가기</a>
+                    </div>
+                    <h1>&nbsp;</h1>
+                </div>
+            </div>
+
+            <div class="gap-2 mt-12"></div>
+            <div class="container">
+            <!--<div class="portfolio-list isotope isotope-3-cols">-->
+				<!-- <div class="portfolio-list isotope isotope-item">
+					<div class="isotope-item">
+						<div
+							class="portfolio-item portfolio-item-square portfolio-item-info-style-1">
+							<a href="IT_search_content.jsp?adv_num="<%=adv.getAdv_num() %> class="portfolio-item-link"></a>
+							<div class="portfolio-item-image">
+					
+							<%String img="'files/"+adv.getAdv_img()+"'";%>
+								<div style="background-image: url(<%=img %>);"></div>
+							</div>
+							<div
+								class="portfolio-item-info portfolio-item-info-center text-xs-center">
+								<div>
+									<h2 class="portfolio-item-title h3"><%=adv.getAdv_name()%></h2>
+									<div class="portfolio-item-category"><%=adv.getAdv_company()%></div><br>
+									<%=adv.getAdv_content() %>
+								</div>
+							</div>
+						</div>
+					</div>
+            	</div> -->
+            </div> 
+            <div class="gap-4 mt-15"></div>
+        
+        <!-- END: Portfolio -->
+
+         <!-- START: Reviews -->
+        <div class="box bg-dark-1">
+            <div class="bg-image bg-image-parallax" style="background-image: url('assets/images/bg-pattern.jpg');"></div>
+            <div class="gap-5 mnt-6"></div>
+            <div class="gap-3"></div>
+            <div class="container-fluid">
+                <!-- START: Carousel -->
+                <div class="carousel carousel-all-visible text-white" data-autoplay="18000" data-dots="true">
+                    <div class="carousel-inner">
+                        <!-- <div>
+                            <div>
+                                <blockquote class="blockquote-style-1 text-white">
+                                    <p>Outstanding job and exceeded all expectations. It was a pleasure to work with them on a sizable first project and am looking forward to start the next one asap.</p>
+                                    <cite>Michael Hopkins</citef>
+                                </blockquote>
+                                <div class="gap-3 mt-10"></div>
+                            </div>
+                        </div> -->
+                       
+<!--노티스 들어갈곳  -->
+                    </div>
+                </div>
+                <!-- END: Carousel -->
+            </div>
+            <div class="gap-4 mt-3"></div>
+			<a href="notice/noticeWriteForm.jsp">공지 등록하러 가기</a>
+        </div>
+        <!-- END: Reviews -->
+        <!--
+    START: Footer
+-->
+        <footer class="footer">
+
+
+            <div class="footer-cont">
+                <div class="container text-xs-center">
+                    <div class="footer-social">
+                        <ul>
+                            <li><a href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://dribbble.com"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-text">
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END: Footer -->
+    </div>
+    <!-- START: Scripts -->
+    <script src="../static/js/combined.js" th:src="@{/js/combined.js}"></script>
+   
+    <!-- END: Scripts -->
+</body>
+</html>
