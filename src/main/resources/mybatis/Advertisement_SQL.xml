@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teadone.itjobs.ad.AdvertisementMapper" >
+	<insert id="insertAdvertisement" parameterType="AdvertisementVO">
+		insert into ${table} (adv_num,adv_company,adv_name,adv_email,adv_content,adv_reg_date,adv_img,adv_display)
+		values(null, #{adv_company}, #{adv_name}, #{adv_email}, #{adv_content}, #{adv_reg_date}, #{adv_img},#{adv_display})
+	</insert>
+	
+	<select id="getAdvCount" parameterType="AdvertisementVO" resultType="int">
+		select count(*) from ${table} where adv_display=#{adv_display}
+	</select>
+	
+	<select id="getAdvertisement" parameterType="AdvertisementVO" resultType="AdvertisementVO">
+		select * from ${table} where adv_display=#{adv_display}
+	</select>
+	
+	<select id="readSelectAdvertisement" parameterType="AdvertisementVO" resultType="AdvertisementVO">
+		
+		select * from ${table} where adv_num = ${adv_num}
+	</select>
+	<update id="readUpdateAdvertisement" parameterType="AdvertisementVO" >
+		update ${table} set readcount = readcount+1 where adv_num = ${adv_num};
+	</update>
+	
+	<select id="updateGetAdvertisement" parameterType="AdvertisementVO" resultType="AdvertisementVO">
+		select * from ${table} where adv_num = ${adv_num}
+	</select>
+	
+	<update id="updateAdvertisement" parameterType="AdvertisementVO">
+		update ${table} set adv_name=${adv_name},adv_email=${adv_email},adv_company=${adv_company},adv_content=${adv_content},adv_img=${adv_img} where adv_num=${adv_num}
+	</update>
+	
+	<delete id="deleteAdvertisement" parameterType="AdvertisementVO">
+		delete from advertisement where adv_num in	
+		<foreach collection="adv_nums" item="item" index="index" open="(" close=")" separator=",">
+		    #{item}
+		</foreach>
+	</delete>
+	
+	<select id="getMyLikeAdvertisementNum" parameterType="AdvertisementVO" resultType="String">
+		select adv_num from likeadv where IT_id=#{myId}
+	</select>
+	
+	<select id="getMyLikeAdvertisementNumCount" parameterType="AdvertisementVO" resultType="int">
+		select count(adv_num) from likeadv where IT_id=#{myId}
+	</select>
+	
+	<select id="getMyLikeAdvertisement" parameterType="AdvertisementVO" resultType="AdvertisementVO">
+		select * from advertisement where adv_num in	
+		<foreach collection="adv_nums" item="item" index="index" open="(" close=")" separator=",">
+		    #{item}
+		</foreach>
+	</select>
+	
+	<insert id="addMyLikeAdvertisement" parameterType="AdvertisementVO" >
+		insert into likeadv values
+		<foreach collection="adv_nums" item="item" index="index" separator=",">
+			 (#{IT_id},#{item})   
+		</foreach>
+	</insert>
+	
+	<delete id="delMyLikeAdvertisement" parameterType="AdvertisementVO">
+		delete from likeadv where IT_id=#{IT_id} and adv_num in	
+		<foreach collection="adv_nums" item="item" index="index" open="(" close=")" separator=",">
+		    #{item}
+		</foreach>
+	</delete>
+	
+	<insert id="addEnrolAdvertisement" parameterType="AdvertisementVO" >
+		insert into enroladv values
+		<foreach collection="adv_nums" item="item" index="index" separator=",">
+			 (#{item},#{IT_id})   
+		</foreach>
+	</insert>
+	
+	<select id="getEnrolAdvertisementCount" parameterType="AdvertisementVO" resultType="int">
+		<if test='adv_company == "admin"'>
+    		select count(*) from advertisement
+			join enroladv
+			using(adv_num) 
+		</if>
+		<if test='adv_company != "admin"'>
+    		select count(*) from advertisement
+			join enroladv
+			using(adv_num) 
+			where adv_company=#{adv_company}
+		</if>
+	</select>
+	
+	<select id="getEnrolAdvertisement" parameterType="AdvertisementVO" resultType="AdvertisementVO">
+		<if test='adv_company == "admin"'>
+    		select * from advertisement
+			join enroladv
+			using(adv_num) 
+		</if>
+		<if test='adv_company != "admin"'>
+    		select * from advertisement
+			join enroladv
+			using(adv_num) 
+			where adv_company=#{adv_company}
+		</if>
+	</select>
+	
+	<delete id="deleteEnrolAdvertisement" parameterType="AdvertisementVO">
+		delete from enroladv where adv_num in	
+		<foreach collection="adv_nums" item="item" index="index" open="(" close=")" separator=",">
+		    #{item}
+		</foreach>
+		and
+		IT_id in
+		<foreach collection="IT_ids" item="item" index="index" open="(" close=")" separator=",">
+		    #{item}
+		</foreach>
+	</delete>
+	
+	<!-- SearchDAO 처리부분 -->
+	<select id="getSearchCount" parameterType="AdvertisementVO" resultType="int">
+		SELECT COUNT(*) 
+		FROM advertisement 
+		WHERE advertisement.${sort} like '%${keyword}%' 
+	</select>
+	
+	<select id="getSearchAdvertisement" parameterType="AdvertisementVO" resultType="AdvertisementVO">
+		SELECT * 
+		FROM advertisement 
+		WHERE advertisement.${sort} like '%${keyword}%'
+		limit ${start},${end}
+	</select>
+	
+	<select id="getSearchAdvertisementContent" parameterType="AdvertisementVO" resultType="AdvertisementVO">
+		select * from advertisement
+		where adv_num=${adv_num}
+	</select>
+	
+	<select id="getMyAdvertisementCount" parameterType="AdvertisementVO" resultType="int">
+		SELECT count(*)
+		FROM advertisement 
+		WHERE advertisement.${sort}='${keyword}'
+	</select>
+	
+	<select id="getMyAdvertisement" parameterType="AdvertisementVO" resultType="AdvertisementVO">
+		SELECT * 
+		FROM advertisement 
+		WHERE advertisement.${sort}='${keyword}'
+		limit ${start},${end}
+	</select>
+
+</mapper>
