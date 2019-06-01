@@ -1,0 +1,401 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>ITJobs</title>
+
+<meta name="keywords" content="IT,Jobs,ITJobs">
+<meta name="author" content="Won">
+<link rel="icon" type="image/png" href="../static/images/icon.png"
+	th:href="@{/images/icon.png}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- START: Styles -->
+
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700"
+	rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="../static/css/combined.css"
+	th:href="@{/css/combined.css}">
+
+<!-- END: Styles -->
+<style>
+</style>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-2.1.0.min.js">
+	
+</script>
+
+</head>
+
+<body>
+
+
+
+	<header class="header">
+		<!--
+        START: Navbar
+    -->
+
+		<nav
+			class="navbar navbar-top navbar-sticky navbar-transparent navbar-white-text-on-top">
+			<div class="container">
+				<div class="nav-table">
+					<a href="index" class="nav-logo"> <img
+						src="../static/images/logo-light.png"
+						th:src="@{/images/logo-light.png}" alt="" width="85"
+						class="nav-logo-onscroll"> <img
+						src="../static/images/logo.png" th:src="@{/images/logo.png}"
+						alt="" width="85">
+					</a>
+
+					<ul class="nav nav-right hidden-md-down"
+						data-nav-mobile="#nav-mobile">
+						<li>
+							<table>
+								<tbody>
+									<tr>
+										<form method="get" action="IT_search.jsp" name="search">
+											<td style="border-bottom: 1.5px solid rgba(0, 0, 0, 0.3);">
+												<select name="sort" class="sort"
+												style="font-color: #AAAAAA;">
+													<option value="adv_company">회사</option>
+													<option value="adv_content">내용</option>
+													<option value="adv_name">광고명</option>
+											</select>
+											</td>
+											<td style="border-bottom: 1.5px solid rgba(0, 0, 0, 0.3);">
+												<input class="form-control" type="text" name="keyword"
+												placeholder="내용을 입력하세요" size="30"
+												style="background: rgba(255, 255, 255, 0.3); border-radius: 8px;">
+											</td>
+											<td><input TYPE="IMAGE" class="searchImg"
+												src="assets/images/search.png"
+												th:src="@{/images/search.png}" weight="25px" height="25px"
+												onclick="document.search.submit()" align="absmiddle">
+											</td>
+										</form>
+									</tr>
+								</tbody>
+							</table>
+						</li>
+
+						<li id="dropdown"><a href="#">상세검색</a>
+							<div class="dropdown-content">
+								<a href="#">구인정보</a> <a href="#">채용정보</a>
+							</div></li>
+
+
+						<li><a href="list.jsp">커뮤니티</a></li>
+
+						<li id="dropdown"><a href="IT_logIn"
+							th:href="${session.user == null} ? @{/IT_logIn} : @{/logout}">
+								<span
+								th:text="${session.user == null} ? '로그인' : ${session.user}"></span>
+						</a>
+							<div class="dropdown-content">
+								<a th:href="(${session.logOL})"><span
+									th:text="(${session.logout})"></span></a> <a href="#">Link 2</a> <a
+									href="#">Link 3</a>
+							</div></li>
+
+					</ul>
+
+
+				</div>
+			</div>
+		</nav>
+		<!-- END: Navbar -->
+	</header>
+	<div class="main">
+		<!-- START: Header Title -->
+		<div class="header-title header-title-full">
+			<div class="bg-image">
+				<div class="bg-image-overlay"
+					style="background: #ef32d9; background: -webkit-linear-gradient(to bottom, #000000, #403F95); background: linear-gradient(to bottom, #000000, #403F95);">
+					<div class="header-table" style="margin-top:200px;">
+						<div class="header-table-cell">
+							<!-- 내용 넣을 곳 -->
+							<div class="container1">
+								<form action="mypage/IT_addMyLikeAdvertisement.jsp" id="list">
+									<table>
+										<thead>
+											<tr>
+												<th align="center" width="50">선택</th>
+												<th align="center" width="50">번 호</th>
+												<th align="center" width="500">제 목</th>
+												<th align="center" width="100">회 사</th>
+												<th align="center" width="150">작성일</th>
+												<th align="center" width="50">조 회</th>
+											</tr>
+										</thead>
+										<tbody>
+			
+											<tr height="5" th:each="sa : ${sAdv}">
+													<td align="center">
+												<input type="checkBox" name="adv_nums"
+													th:value="${{sa.adv_name}}">
+												</td>
+												<td width="70" align="center"></td>
+												<td width="500" align="left"><a
+													href="IT_search_content.jsp?num="> <span
+														th:text="${{sa.adv_name}}"></span></a>
+												<td width="100" align="left"><a href=""> <span
+														th:text="${{sa.adv_email}}"></span></a></td>
+												<td width="150" align="center"><span
+													th:text="${{sa.adv_reg_date}}"></span></td>
+												<td width="50" align="center"><span
+													th:text="${{sa.adv_readcount}}"></span></td>
+			
+											</tr>
+			
+										</tbody>
+									</table>
+			
+									<div>
+										<input type="submit" class="btn btn-success"> <input
+											type="button" value="접수" onclick="enrol()" class="btn btn-info">
+									</div>
+			
+								</form>
+			
+								
+							</div>
+						</div>
+					</div>	
+					<!-- 여기까지 내용 넣기 -->
+				</div>
+			</div>
+
+
+			<div id="header-title-scroll-down"></div>
+
+			<!-- END: Header Title -->
+		</div>
+</div>
+
+
+		<!-- START: Scripts -->
+
+		<script src="assets/js/combined.js"></script>
+
+		<!-- END: Scripts -->
+</body>
+
+</html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>ITJobs</title>
+
+<meta name="keywords" content="IT,Jobs,ITJobs">
+<meta name="author" content="Won">
+<link rel="icon" type="image/png" href="../static/images/icon.png"
+	th:href="@{/images/icon.png}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- START: Styles -->
+
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700"
+	rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="../static/css/combined.css"
+	th:href="@{/css/combined.css}">
+
+<!-- END: Styles -->
+<style>
+</style>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-2.1.0.min.js">
+	
+</script>
+
+</head>
+
+<body>
+
+
+
+	<header class="header">
+		<!--
+        START: Navbar
+    -->
+
+		<nav
+			class="navbar navbar-top navbar-sticky navbar-transparent navbar-white-text-on-top">
+			<div class="container">
+				<div class="nav-table">
+					<a href="index" class="nav-logo"> <img
+						src="../static/images/logo-light.png"
+						th:src="@{/images/logo-light.png}" alt="" width="85"
+						class="nav-logo-onscroll"> <img
+						src="../static/images/logo.png" th:src="@{/images/logo.png}"
+						alt="" width="85">
+					</a>
+
+					<ul class="nav nav-right hidden-md-down"
+						data-nav-mobile="#nav-mobile">
+						<li>
+							<table>
+								<tbody>
+									<tr>
+										<form method="get" action="IT_search.jsp" name="search">
+											<td style="border-bottom: 1.5px solid rgba(0, 0, 0, 0.3);">
+												<select name="sort" class="sort"
+												style="font-color: #AAAAAA;">
+													<option value="adv_company">회사</option>
+													<option value="adv_content">내용</option>
+													<option value="adv_name">광고명</option>
+											</select>
+											</td>
+											<td style="border-bottom: 1.5px solid rgba(0, 0, 0, 0.3);">
+												<input class="form-control" type="text" name="keyword"
+												placeholder="내용을 입력하세요" size="30"
+												style="background: rgba(255, 255, 255, 0.3); border-radius: 8px;">
+											</td>
+											<td><input TYPE="IMAGE" class="searchImg"
+												src="assets/images/search.png"
+												th:src="@{/images/search.png}" weight="25px" height="25px"
+												onclick="document.search.submit()" align="absmiddle">
+											</td>
+										</form>
+									</tr>
+								</tbody>
+							</table>
+						</li>
+
+						<li id="dropdown"><a href="#">상세검색</a>
+							<div class="dropdown-content">
+								<a href="#">구인정보</a> <a href="#">채용정보</a>
+							</div></li>
+
+
+						<li><a href="list.jsp">커뮤니티</a></li>
+
+						<li id="dropdown"><a href="IT_logIn"
+							th:href="${session.user == null} ? @{/IT_logIn} : @{/logout}">
+								<span
+								th:text="${session.user == null} ? '로그인' : ${session.user}"></span>
+						</a>
+							<div class="dropdown-content">
+								<a th:href="(${session.logOL})"><span
+									th:text="(${session.logout})"></span></a> <a href="#">Link 2</a> <a
+									href="#">Link 3</a>
+							</div></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- END: Navbar -->
+
+	</header>
+
+	<!--START: Navbar Mobile-->
+	<nav class="navbar navbar-full navbar-align-center" id="nav-mobile">
+		<div class="navbar-bg">
+			<div class="bg-image"
+				style="background-image: url('../static/images/bg-menu.jpg')"></div>
+		</div>
+		<div class="nav-table">
+			<div class="nav-row">
+				<div class="container">
+					<div class="nav-header">
+
+						<div class="nav-logo">
+							<a href="index" class="nav-logo"> <img
+								src="assets/images/logo-light.svg" alt="" width="85">
+							</a>
+						</div>
+
+						<div class="nav-close navbar-full-toggle">
+							<span class="icon-close"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav-row-full nav-row">
+				<div class="nano">
+					<div class="nano-content">
+						<div class="nav-table">
+							<div
+								class="nav-row nav-row-full nav-row-center navbar-mobile-content">
+								<ul class="nav">
+									<!-- Here will be inserted menu from [data-mobile-menu="#nav-mobile"] -->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav-row">
+				<div class="container">
+					<div class="nav-social">
+						<ul>
+							<li><a href="https://twitter.com/nkdevv"><i
+									class="fa fa-twitter"></i></a></li>
+							<li><a href="https://www.facebook.com/unvabdesign/"><i
+									class="fa fa-facebook"></i></a></li>
+							<li><a href="https://dribbble.com/_nK"><i
+									class="fa fa-dribbble"></i></a></li>
+							<li><a href="https://www.instagram.com/unvab/"><i
+									class="fa fa-instagram"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!-- END: Navbar Mobile -->
+
+
+	<div class="main">
+
+		<!-- START: Header Title -->
+		<div class="header-title header-title-full">
+			
+		</div>
+		
+		<!--START: Footer-->
+		<footer class="footer">
+			<div class="footer-cont">
+				<div class="container text-xs-center">
+					<div class="footer-social">
+						<ul>
+							<li><a href="https://twitter.com"><i
+									class="fa fa-twitter"></i></a></li>
+							<li><a href="https://www.facebook.com"><i
+									class="fa fa-facebook"></i></a></li>
+							<li><a href="https://dribbble.com"><i
+									class="fa fa-dribbble"></i></a></li>
+							<li><a href="https://www.instagram.com"><i
+									class="fa fa-instagram"></i></a></li>
+						</ul>
+					</div>
+
+					<div class="footer-text"></div>
+				</div>
+			</div>
+		</footer>
+		<!-- END: Footer -->
+
+	</div>
+	<!-- START: Scripts -->
+	<script src="../static/js/combined.js" th:src="@{/js/combined.js}"></script>
+
+	<!-- END: Scripts -->
+</body>
+</html>
+
+

@@ -5,9 +5,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.teadone.itjobs.ad.AdvertisementMapper;
 import com.teadone.itjobs.ad.AdvertisementVO;
+
+import static org.mockito.Mockito.clearInvocations;
+
+import java.io.File;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -34,6 +38,8 @@ public class AdvertismentTests {
 		System.out.println(mapper.getAdvertisement(param));
 		
 	}
+	
+	
 	
 
 }

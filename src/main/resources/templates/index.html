@@ -50,7 +50,7 @@
                     		<table>
                     		<tbody>
                     			<tr>
-                    				<form method="get" action="IT_search.jsp" name="search" >
+                    				<form method="get" action="/searchList" name="search" >
 	                    				<td style="border-bottom:1.5px solid rgba(0,0,0,0.3);">
 		                    				<select name="sort" class="sort" style="font-color:#AAAAAA;" >
 												<option value="adv_company">회사</option>
@@ -85,7 +85,7 @@
                         
                         <li id="dropdown">
                             <a href="IT_logIn" th:href="${session.user == null} ? @{/IT_logIn} : @{/logout}">
-                            	<span th:text="${session.user == null} ? 'Login' : ${session.user}"></span>
+                            	<span th:text="${session.user == null} ? '로그인' : ${session.user}"></span>
                             </a>
                             <div class="dropdown-content">
 							    <a th:href="(${session.logOL})"><span th:text="(${session.logout})"></span></a>
@@ -189,7 +189,7 @@
                 <div class="header-table-cell">
 
 				<!-- START: Carousel -->
-                <div class="carousel-2 carousel-x2 carousel-no-margin carousel-all-visible blog-isotope" data-autoplay="1000" data-dots="true">
+                <div class="carousel-2 carousel-x2 carousel-no-margin carousel-all-visible blog-isotope" data-autoplay="5000" data-dots="true">
                     <div class="carousel-inner">
 					
                         <div>
@@ -357,7 +357,7 @@
             </div>
 
         </div>
-		<a href="topadvertisement/writeForm.jsp">광고 등록하러 가기</a>
+		<a href="/advWrite" th:href="@{/advWrite}">광고 등록하러 가기</a>
 		<!-- 사이즈으으으으 :<span th:text="${#lists.size(Adv)}"></span>
 		<table>
 			<tr th:each="a : ${mAdv}" >
@@ -381,7 +381,7 @@
                     <div class="col-lg-8 offset-lg-2">
                         <div class="text-xs-center">골드 상품
                         </div>
-                        <a href="advertisement/writeForm.jsp">광고 등록하러 가기</a>
+                        <a href="/advWrite" th:href="@{/advWrite}">광고 등록하러 가기</a>
                     </div>
                     <h1>&nbsp;</h1>
                 </div>
@@ -420,16 +420,16 @@
                 <!-- START: Carousel -->
                 <div class="carousel carousel-all-visible text-white" data-autoplay="18000" data-dots="true">
                     <div class="carousel-inner">
-                        <!-- <div>
+                       <div th:each="no : ${notice}">
                             <div>
                                 <blockquote class="blockquote-style-1 text-white">
-                                    <p>Outstanding job and exceeded all expectations. It was a pleasure to work with them on a sizable first project and am looking forward to start the next one asap.</p>
-                                    <cite>Michael Hopkins</citef>
-                                </blockquote> 
+                                	<cite><span th:text="${{no.notice_title}}"></span></cite><br>
+                                	<cite><span th:text="${{no.notice_regTime}}"></span></cite><br>
+                                    <cite><span th:text="${{no.notice_content}}"></span></cite>
+                                </blockquote>
                                 <div class="gap-3 mt-10"></div>
                             </div>
-                        </div> -->
-                       
+                        </div>
 <!--노티스 들어갈곳  -->
                     </div>
                 </div>

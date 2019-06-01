@@ -10,5 +10,9 @@ public interface AdvertisementMapper {
 	public int getAdvCount(AdvertisementVO vo);
 	public ArrayList<AdvertisementVO> getAdvertisement(AdvertisementVO vo);
 	public AdvertisementVO readSelectAdvertisement(AdvertisementVO vo);
+	public int addAdvertisement(AdvertisementVO vo);
 	
+	//searchList
+	public ArrayList<AdvertisementVO> getSearchAdv(AdvSearchVO vo);
+	public AdvertisementVO getSearchAdvContent(AdvertisementVO vo);
 }

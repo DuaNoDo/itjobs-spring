@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.teadone.itjobs.ad.AdvertisementMapper" >
-	<insert id="insertAdvertisement" parameterType="AdvertisementVO">
+	<insert id="addAdvertisement" parameterType="AdvertisementVO">
 		insert into advertisement (adv_num,adv_company,adv_name,adv_email,adv_content,adv_reg_date,adv_img,adv_display)
 		values(null, #{adv_company}, #{adv_name}, #{adv_email}, #{adv_content}, #{adv_reg_date}, #{adv_img},#{adv_display})
 	</insert>
@@ -122,14 +122,14 @@
 		WHERE advertisement.${sort} like '%${keyword}%' 
 	</select>
 	
-	<select id="getSearchAdvertisement" parameterType="AdvertisementVO" resultType="AdvertisementVO">
+	<select id="getSearchAdv" parameterType="AdvSearchVO" resultType="AdvertisementVO">
 		SELECT * 
 		FROM advertisement 
 		WHERE advertisement.${sort} like '%${keyword}%'
-		limit ${start},${end}
+	
 	</select>
 	
-	<select id="getSearchAdvertisementContent" parameterType="AdvertisementVO" resultType="AdvertisementVO">
+	<select id="getSearchAdvContent" parameterType="AdvertisementVO" resultType="AdvertisementVO">
 		select * from advertisement
 		where adv_num=${adv_num}
 	</select>
