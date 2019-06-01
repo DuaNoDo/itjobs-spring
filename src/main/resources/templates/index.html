@@ -85,7 +85,7 @@
                         
                         <li id="dropdown">
                             <a href="IT_logIn" th:href="${session.user == null} ? @{/IT_logIn} : @{/logout}">
-                            	<span th:text="${session.user == null ? 'Login' : ${session.user}}"></span>
+                            	<span th:text="${session.user == null} ? 'Login' : ${session.user}"></span>
                             </a>
                             <div class="dropdown-content">
 							    <a th:href="(${session.logOL})"><span th:text="(${session.logout})"></span></a>

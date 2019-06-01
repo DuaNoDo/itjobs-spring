@@ -46,7 +46,7 @@ public class LoginController {
 		session.removeAttribute("user");
 		session.removeAttribute("logout");
 		session.removeAttribute("logOL");
-		session.setAttribute("user", "로그인");
+		
 		return "redirect:/index";
 	}
 }

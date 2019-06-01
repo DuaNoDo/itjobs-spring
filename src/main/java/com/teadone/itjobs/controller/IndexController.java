@@ -31,10 +31,7 @@ public class IndexController {
 		mparam.setAdv_display("mid");
 		model.put("mAdv", mapper.getAdvertisement(mparam));
 		
-		/*
-		 * if(session.getAttribute("user").toString().isEmpty()){
-		 * session.setAttribute("user", "로그인"); }
-		 */
+
 		return "index";
 		
 		
