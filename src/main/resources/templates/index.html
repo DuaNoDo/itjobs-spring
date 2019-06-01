@@ -1,4 +1,4 @@
-<<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -40,7 +40,7 @@
         <nav class="navbar navbar-top navbar-sticky navbar-transparent navbar-white-text-on-top">
             <div class="container">
                 <div class="nav-table">
-                    <a href="index.jsp" class="nav-logo">
+                    <a href="index" class="nav-logo">
                         <img src="../static/images/logo-light.png" th:src="@{/images/logo-light.png}" alt="" width="85" class="nav-logo-onscroll">
                         <img src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="" width="85">
                     </a>
@@ -80,13 +80,15 @@
                         
 						
                         <li>
-                            <a href="board/list.jsp">커뮤니티</a>
+                            <a href="list.jsp">커뮤니티</a>
                         </li>
                         
                         <li id="dropdown">
-                            <a href="#IT_sign.jsp">마이페이지</a>
+                            <a href="IT_logIn" th:href="${session.user == null} ? @{/IT_logIn} : @{/logout}">
+                            	<span th:text="${session.user == null ? 'Login' : ${session.user}}"></span>
+                            </a>
                             <div class="dropdown-content">
-							    <a href="#">Link 1</a>
+							    <a th:href="(${session.logOL})"><span th:text="(${session.logout})"></span></a>
 							    <a href="#">Link 2</a>
 							    <a href="#">Link 3</a>
 							</div>
@@ -115,7 +117,7 @@
                     <div class="nav-header">
 
                         <div class="nav-logo">
-                            <a href="index.jsp" class="nav-logo">
+                            <a href="index" class="nav-logo">
                                 <img src="assets/images/logo-light.svg" alt="" width="85">
                             </a>
                         </div>
@@ -321,25 +323,25 @@
 
                         </div>
                         
-                        <div th:each="a : ${Adv}">
+                        <div th:each="ta : ${tAdv}">
 							<div>
                               <div class="pl-10 pr-10">
                                     <div class="blog-post">
                                         <div class="post-thumb">
                                             <a href="IT_search_content.jsp?adv_num=">
                                             	
-                                                <img th:src="${{a.adv_img}}" alt="사진이 없잖아?" class="img-stretch" width="270px" height="270px">
+                                                <img th:src="${{ta.adv_img}}" alt="사진이 없잖아?" class="img-stretch" width="270px" height="270px">
                                             </a>
-                                            <div class="post-category"><a href="#"><text th:text="${{a.adv_name}}"/></a></div>
+                                            <div class="post-category"><a href="#"><text th:text="${{ta.adv_name}}"/></a></div>
                                         </div>
-                                        <h2 class="post-title h4"><a href="#"><text th:text="${{a.adv_company}}"/></a></h2>
+                                        <h2 class="post-title h4"><a href="#"><text th:text="${{ta.adv_company}}"/></a></h2>
 
                                         <div class="post-date">
                                             03th ~ 18th sep. 2018
                                         </div>
 
                                         <div class="post-text">
-                                            <text th:text="${{a.adv_content}}">
+                                            <text th:text="${{ta.adv_content}}">
                                         </div>
                                     </div>
                                 </div>
@@ -356,7 +358,12 @@
 
         </div>
 		<a href="topadvertisement/writeForm.jsp">광고 등록하러 가기</a>
-		<table><tr th:each="a : ${Adv}" ><td th:text="${{a.adv_name}}"/> </tr></table>
+		<!-- 사이즈으으으으 :<span th:text="${#lists.size(Adv)}"></span>
+		<table>
+			<tr th:each="a : ${mAdv}" >
+				<td th:text="${{a.adv_name}}"/> 
+			</tr>
+		</table>  -->
 		
         <div id="header-title-scroll-down"></div>
 
@@ -382,28 +389,23 @@
 
             <div class="gap-2 mt-12"></div>
             <div class="container">
-            <!--<div class="portfolio-list isotope isotope-3-cols">-->
-				<!-- <div class="portfolio-list isotope isotope-item">
-					<div class="isotope-item">
-						<div
-							class="portfolio-item portfolio-item-square portfolio-item-info-style-1">
-							<a href="IT_search_content.jsp?adv_num="<%=adv.getAdv_num() %> class="portfolio-item-link"></a>
+				 <div class="portfolio-list isotope isotope-item" >
+					<div class="isotope-item" th:each="ma : ${mAdv}">
+						<div class="portfolio-item portfolio-item-square portfolio-item-info-style-1">
+							<a href="IT_search_content.jsp?adv_num=" class="portfolio-item-link"></a>
 							<div class="portfolio-item-image">
-					
-							<%String img="'files/"+adv.getAdv_img()+"'";%>
-								<div style="background-image: url(<%=img %>);"></div>
+								<div th:style="'background-image:url(' +${ma.adv_img} + ');'"></div>
 							</div>
-							<div
-								class="portfolio-item-info portfolio-item-info-center text-xs-center">
+							<div class="portfolio-item-info portfolio-item-info-center text-xs-center">
 								<div>
-									<h2 class="portfolio-item-title h3"><%=adv.getAdv_name()%></h2>
-									<div class="portfolio-item-category"><%=adv.getAdv_company()%></div><br>
-									<%=adv.getAdv_content() %>
+									<h2 class="portfolio-item-title h3"><text th:text="${{ma.adv_name}}"/></h2>
+									<div class="portfolio-item-category"><text th:text="${{ma.adv_company}}"/></div><br>
+									<text th:text="${{ma.adv_content}}">
 								</div>
 							</div>
 						</div>
 					</div>
-            	</div> -->
+            	</div> 
             </div> 
             <div class="gap-4 mt-15"></div>
         
@@ -423,7 +425,7 @@
                                 <blockquote class="blockquote-style-1 text-white">
                                     <p>Outstanding job and exceeded all expectations. It was a pleasure to work with them on a sizable first project and am looking forward to start the next one asap.</p>
                                     <cite>Michael Hopkins</citef>
-                                </blockquote>
+                                </blockquote> 
                                 <div class="gap-3 mt-10"></div>
                             </div>
                         </div> -->

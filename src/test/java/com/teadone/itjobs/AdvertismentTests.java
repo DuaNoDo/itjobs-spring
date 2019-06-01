@@ -21,7 +21,7 @@ public class AdvertismentTests {
 		AdvertisementVO param = new AdvertisementVO();
 		param.setTable("advertisement");
 		param.setAdv_display("top");
-		System.out.println(mapper.getAdvCount(param));
+		//System.out.println(mapper.getAdvCount(param));
 		
 		//assertEquals(0,);
 		
@@ -29,7 +29,8 @@ public class AdvertismentTests {
 	@Test
 	public void getAdv() {
 		AdvertisementVO param = new AdvertisementVO();
-		param.setAdv_display("top");
+		param.setTable("advertisement");
+		param.setAdv_display("mid");
 		System.out.println(mapper.getAdvertisement(param));
 		
 	}

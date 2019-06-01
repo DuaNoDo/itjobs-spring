@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teadone.itjobs.mem.MemberMapper" >
+	<!-- PersonalMemberDAO처리부분 -->
+		
+	<insert id="joinPersonalMember" parameterType="PMemVO">
+		insert into IT_personal_member 
+		values(#{IT_id},#{IT_pass},#{IT_name},
+		'${IT_mail1}@${IT_mail2}',
+		'${IT_phone1}-${IT_phone2}-${IT_phone3}',
+		#{IT_gender},#{IT_zip},
+		'${IT_addr1} , ${IT_addr2}',now())
+	</insert> 
+
+	<select id="searchPersonalMember" parameterType="PMemVO" resultType="String">
+		select IT_id from IT_personal_member where IT_name=#{IT_name} and IT_mail='${IT_mail1}@${IT_mail2}'
+	</select>
+	
+	<select id="checkPMem" parameterType="PMemVO" resultType="String">
+		select IT_pass from IT_personal_member where IT_id=#{IT_id}
+	</select>
+	
+	<select id="checkPMemDup" parameterType="PMemVO" resultType="int">
+		select count(*) from IT_personal_member where IT_id=#{IT_id}		
+	</select>
+	
+	<select id="searchPwPersonalMember" parameterType="PMemVO" resultType="String">
+		select IT_pass from IT_personal_member where IT_id=#{IT_id} and IT_name=#{IT_name} and IT_mail='${IT_mail1}@${IT_mail2}'
+	</select>
+	
+	<update id="modifyPersonalMember" parameterType="PMemVO">
+		update IT_personal_member set IT_pass=#{IT_pass} , IT_name=#{IT_name} , IT_phone=#{IT_phone} , IT_zip=#{IT_zip}, IT_addr='${IT_addr1} , ${IT_addr2}' where IT_id=#{IT_id} and IT_num=#{IT_num}
+	</update>
+	
+	<select id="getPersonalMemberCount" parameterType="PMemVO" resultType="int">
+		select count(*) from IT_personal_member
+	</select>
+	
+	<select id="getPersonalMember" parameterType="PMemVO" resultType="PMemVO">
+		select * from IT_personal_member
+	</select>
+	
+	<!-- CompanyMemberDAO처리부분 -->
+	<insert id="joinCompanyMember" parameterType="CMemVO">
+		insert into IT_company_member (IT_C_id,IT_C_pass,IT_C_num,IT_C_name,IT_C_mail,IT_C_phone,IT_C_zip,IT_C_addr,IT_C_join_date)
+		values(#{IT_C_id},#{IT_C_pass},#{IT_C_num},#{IT_C_name},
+		'${IT_C_mail1}@${IT_C_mail2}',
+		'${IT_C_phone1}-${IT_C_phone2}-${IT_C_phone3}',
+		#{IT_C_zip},
+		'${IT_C_addr1} , ${IT_C_addr2}',now())
+	</insert>
+	
+	<select id="searchCompanyMember" parameterType="CMemVO" resultType="String">
+		select IT_C_id from IT_company_member where IT_C_name=#{IT_C_name} and IT_C_mail='${IT_C_mail1}@${IT_C_mail2}',
+	</select>
+	
+	<select id="checkCMem" parameterType="CMemVO" resultType="String">
+		select IT_C_pass from IT_company_member where IT_C_id=#{IT_C_id}
+	</select>
+	
+	<select id="checkCMemDup" parameterType="CMemVO" resultType="int">
+		select count(*) from IT_company_member where IT_C_id=#{IT_C_id}		
+	</select>
+	
+	<select id="searchPwCompanyMember" parameterType="CMemVO" resultType="String">
+		select IT_C_pass from IT_company_member where IT_C_id=#{IT_C_id} and IT_C_name=#{IT_C_name} and IT_C_mail='${IT_C_mail1}@${IT_C_mail2}',
+	</select>
+	
+	<update id="modifyCompanyMember" parameterType="CMemVO">
+		update IT_company_member set IT_C_pass=#{IT_C_pass} , IT_C_name=#{IT_C_name} , IT_C_phone=#{IT_C_phone} , IT_C_zip=#{IT_C_zip}, IT_C_addr='${IT_C_addr1} , ${IT_C_addr2}' where IT_C_id=#{IT_C_id} and IT_C_num=#{IT_C_num}
+	</update>
+	<update id="updateLastLog" parameterType="CMemVO">
+		update IT_company_member set IT_C_LastLog = now() where IT_C_id=#{IT_C_id}
+	</update>
+	
+	<update id="giveDayIncentive" parameterType="CMemVO">
+		update IT_company_member set IT_C_Incentive=IT_C_Incentive+100  where TRUNCATE(now(),-6) - TRUNCATE(IT_C_LastLog,-6) >=1000000 and IT_C_id=#{IT_C_id}
+	</update>
+
+</mapper>
