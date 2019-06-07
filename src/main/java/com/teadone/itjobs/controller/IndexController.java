@@ -51,5 +51,12 @@ public class IndexController {
 		return "/advWrite";
 	}
 	
+	@GetMapping(value = "/join")
+	public String join() {
+		
+		return "/join";
+	}
+	
+	
 	
 }

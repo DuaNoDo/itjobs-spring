@@ -40,13 +40,13 @@ public class AdvertisementService {
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 			if (multipartFile.isEmpty() == false) {
 				originalFileName = multipartFile.getOriginalFilename();
-				/*
-				 * originalFileExtension =
-				 * originalFileName.substring(originalFileName.lastIndexOf(".")); storedFileName
-				 * = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
-				 * 
-				 * file = new File(filePath + storedFileName); multipartFile.transferTo(file);
-				 */
+				
+//				originalFileExtension =originalFileName.substring(originalFileName.lastIndexOf(".")); 
+//				storedFileName= UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;
+//				System.out.println(storedFileName); 
+//				file = new File(filePath + storedFileName);
+//				multipartFile.transferTo(file);
+				
 
 				AdvertisementVO vo = new AdvertisementVO();
 				vo.setAdv_name(request.getParameter("adv_name"));

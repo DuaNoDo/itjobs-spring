@@ -5,7 +5,7 @@
 <mapper namespace="com.teadone.itjobs.mem.MemberMapper" >
 	<!-- PersonalMemberDAO처리부분 -->
 		
-	<insert id="joinPersonalMember" parameterType="PMemVO">
+	<insert id="pJoin" parameterType="PMemVO">
 		insert into IT_personal_member 
 		values(#{IT_id},#{IT_pass},#{IT_name},
 		'${IT_mail1}@${IT_mail2}',
@@ -43,7 +43,7 @@
 	</select>
 	
 	<!-- CompanyMemberDAO처리부분 -->
-	<insert id="joinCompanyMember" parameterType="CMemVO">
+	<insert id="cJoin" parameterType="CMemVO">
 		insert into IT_company_member (IT_C_id,IT_C_pass,IT_C_num,IT_C_name,IT_C_mail,IT_C_phone,IT_C_zip,IT_C_addr,IT_C_join_date)
 		values(#{IT_C_id},#{IT_C_pass},#{IT_C_num},#{IT_C_name},
 		'${IT_C_mail1}@${IT_C_mail2}',

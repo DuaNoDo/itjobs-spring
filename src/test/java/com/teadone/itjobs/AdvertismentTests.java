@@ -38,6 +38,10 @@ public class AdvertismentTests {
 		System.out.println(mapper.getAdvertisement(param));
 		
 	}
+	@Test
+	public void imgTest() {
+		
+	}
 	
 	
 	

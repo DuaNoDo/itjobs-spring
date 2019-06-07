@@ -88,7 +88,7 @@
                             	<span th:text="${session.user == null} ? '로그인' : ${session.user}"></span>
                             </a>
                             <div class="dropdown-content">
-							    <a th:href="(${session.logOL})"><span th:text="(${session.logout})"></span></a>
+							    <a th:href="${session.logOL==null}? @{/join} : ${session.logOL}"><span th:text="${session.logout==null}? '회원가입' : ${session.logout}"></span></a>
 							    <a href="#">Link 2</a>
 							    <a href="#">Link 3</a>
 							</div>
