@@ -7359,7 +7359,7 @@ a:hover > .icon-search:after {
 }
 .portfolio-list .portfolio-item {
     position: relative;
-    overflow: hidden
+    overflow: display;
 }
 .portfolio-list .portfolio-item a.portfolio-item-image,
 .portfolio-list .portfolio-item div.portfolio-item-image {
@@ -7368,12 +7368,12 @@ a:hover > .icon-search:after {
     width: 100%;
     padding-bottom: 80.34%;
     background-position: 50% 50%;
-    background-size: cover;
-    overflow: hidden
+    background-display: cover;
+    overflow: display
 }
 .portfolio-list .portfolio-item a.portfolio-item-image img,
 .portfolio-list .portfolio-item div.portfolio-item-image img {
-    display: none
+    display: display
 }
 .portfolio-list .portfolio-item img.portfolio-item-image {
     width: 100%

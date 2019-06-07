@@ -118,7 +118,7 @@
 
                         <div class="nav-logo">
                             <a href="index" class="nav-logo">
-                                <img src="assets/images/logo-light.svg" alt="" width="85">
+                                <img src="assets/images/logo-light.svg" th:src="@{/images/logo-light.svg}" alt="" width="85">
                             </a>
                         </div>
 
@@ -386,11 +386,11 @@
                     <h1>&nbsp;</h1>
                 </div>
             </div>
-
+<button id="button">See More!~</button>
             <div class="gap-2 mt-12"></div>
-            <div class="container">
-				 <div class="portfolio-list isotope isotope-item" >
-					<div class="isotope-item" th:each="ma : ${mAdv}">
+            <div class="container ">
+				 <div class="ajaxitem portfolio-list isotope isotope-item">
+					<div class="isotope-item " th:each="ma : ${mAdv}">
 						<div class="portfolio-item portfolio-item-square portfolio-item-info-style-1">
 							<a href="IT_search_content.jsp?adv_num=" class="portfolio-item-link"></a>
 							<div class="portfolio-item-image">
@@ -403,9 +403,14 @@
 									<text th:text="${{ma.adv_content}}">
 								</div>
 							</div>
-						</div>
+						</div>					
 					</div>
-            	</div> 
+		
+            	</div>
+            	
+            	
+            	
+            	
             </div> 
             <div class="gap-4 mt-15"></div>
         
@@ -466,7 +471,79 @@
     </div>
     <!-- START: Scripts -->
     <script src="../static/js/combined.js" th:src="@{/js/combined.js}"></script>
-   
+    <script type="text/javascript">
+var list=0;
+
+        $(document).ready(function() {
+            $('#button').bind('click', function() {
+                $('html, body').animate({scrollTop: $(document).height()}, 2000);
+            });
+           ajaxpage=0
+           $.ajax({
+              url: '/ajax/'+ajaxpage,
+              success: function(adv) {
+              adv=JSON.parse(adv);
+              list=adv;
+                 for (var i = 0; i < adv.length; i++) {
+                    $('.ajaxitem').append(
+                       create(
+                    		   adv[i].adv_num,
+                       		adv[i].adv_img,
+                       		adv[i].adv_name,
+                       		adv[i].adv_email,
+                       		adv[i].adv_content
+                       )
+                    );
+                 }
+              }
+           });
+           ajaxpage++;
+        });
+        $("#button").click(function(e){
+            e.preventDefault();
+            $.ajax({
+                url: '/ajax/'+ajaxpage,
+                success: function(adv) {
+                adv=JSON.parse(adv);
+                list=adv;
+                    for (var i = 0; i < adv.length; i++) {
+                        $('.ajaxitem').append(
+                            create(
+                            		adv[i].adv_num,
+                            		adv[i].adv_img,
+                            		adv[i].adv_name,
+                            		adv[i].adv_email,
+                            		adv[i].adv_content
+                            )
+                        );
+                    }
+                }
+            });
+            ajaxpage++;
+        });
+        function create(num,img,name,com,content){
+            return `
+            <div class="isotope-item " style="position: absolute; left: 832px; top: 555px;">
+            <div class="portfolio-item portfolio-item-square portfolio-item-info-style-1">
+			<a href="content/${num}" class="portfolio-item-link"></a>
+			<div class="portfolio-item-image">
+				<div th:style="background-image:url('${img}');"></div>
+			</div>
+			<div class="portfolio-item-info portfolio-item-info-center text-xs-center">
+				<div>
+					<h2 class="portfolio-item-title h3">${name}</h2>
+					<div class="portfolio-item-category">${com}"</div><br>
+					${content}
+				</div>
+			</div>
+		</div>
+		</div>`;
+        }
+</script>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
     <!-- END: Scripts -->
 </body>
 </html>

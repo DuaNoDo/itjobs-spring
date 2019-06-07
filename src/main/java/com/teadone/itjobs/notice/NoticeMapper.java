@@ -11,6 +11,6 @@ public interface NoticeMapper {
 	public int getNoticeC();
 	public ArrayList<NoticeVO> getNotice();
 	public NoticeVO readNotice(NoticeVO vo);
-	
+	public int deleteNotice(NoticeVO vo);
 	
 }

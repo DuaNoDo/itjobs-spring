@@ -31,7 +31,25 @@ INSERT INTO advertisement VALUES
 (24,'hoseo','조교 구함','admin@admin.com','조교구함','2018-10-08 11:27:06',0,'/images/3.jpg','mid'),
 (25,'hoseo','','','','2018-10-08 11:28:53',0,'/images/2.jpg','mid'),
 (26,'hoseo','','','','2018-10-08 11:29:22',0,'/images/4.jpg','mid'),
-(27,'admin','dd','dfdf','ddd','2018-09-17 11:53:44',0,'/images/1.jpg','top');
+(27,'admin','dd','dfdf','ddd','2018-09-17 11:53:44',0,'/images/1.jpg','top'),
+(null,'admin','깔깔','깔깔','깔깔','2018-09-17 12:58:10',0,'/images/3.jpg','mid'),
+(null,'admin','미 ','미셌','미 ?~','2018-09-16 17:20:39',0,'/images/2.jpg','mid'),
+(null,'admin',' ','!?','','2018-09-17 17:34:51',0,'/images/1.jpg','mid'),
+(null,'hoseo','조교 구함','admin@admin.com','조교구함','2018-10-08 11:27:06',0,'/images/3.jpg','mid'),
+(null,'hoseo','','','','2018-10-08 11:28:53',0,'/images/2.jpg','mid'),
+(null,'hoseo','','','','2018-10-08 11:29:22',0,'/images/4.jpg','mid'),
+(null,'admin','깔깔','깔깔','깔깔','2018-09-17 12:58:10',0,'/images/3.jpg','mid'),
+(null,'admin','미 ','미셌','미 ?~','2018-09-16 17:20:39',0,'/images/2.jpg','mid'),
+(null,'admin',' ','!?','','2018-09-17 17:34:51',0,'/images/1.jpg','mid'),
+(null,'hoseo','조교 구함','admin@admin.com','조교구함','2018-10-08 11:27:06',0,'/images/3.jpg','mid'),
+(null,'hoseo','','','','2018-10-08 11:28:53',0,'/images/2.jpg','mid'),
+(null,'hoseo','','','','2018-10-08 11:29:22',0,'/images/4.jpg','mid'),
+(null,'admin','깔깔','깔깔','깔깔','2018-09-17 12:58:10',0,'/images/3.jpg','mid'),
+(null,'admin','미 ','미셌','미 ?~','2018-09-16 17:20:39',0,'/images/2.jpg','mid'),
+(null,'admin',' ','!?','','2018-09-17 17:34:51',0,'/images/1.jpg','mid'),
+(null,'hoseo','조교 구함','admin@admin.com','조교구함','2018-10-08 11:27:06',0,'/images/3.jpg','mid'),
+(null,'hoseo','','','','2018-10-08 11:28:53',0,'/images/2.jpg','mid'),
+(null,'hoseo','','','','2018-10-08 11:29:22',0,'/images/4.jpg','mid');
 
 
 
