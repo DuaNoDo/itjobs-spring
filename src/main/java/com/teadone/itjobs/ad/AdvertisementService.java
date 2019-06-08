@@ -33,6 +33,9 @@ public class AdvertisementService {
 			f.transferTo(
 					Paths.get(env.getProperty("itjobs.upload.path"), f.getOriginalFilename()));
 			vo.setAdv_img(f.getOriginalFilename());
+			vo.setAdv_display("mid");
+			vo.setAdv_reg_date(new Timestamp(System.currentTimeMillis()));
+			mapper.addAdvertisement(vo);
 		}
 		
 		
