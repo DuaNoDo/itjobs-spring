@@ -1,6 +1,8 @@
 package com.teadone.itjobs.ad;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.Iterator;
 import java.util.UUID;
@@ -8,6 +10,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -17,11 +20,24 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class AdvertisementService {
-
+	@Autowired
+	Environment env;
+	
 	@Autowired
 	private AdvertisementMapper mapper;
 	private static final String filePath = "\\images\\";
 
+	public void insertAdv(AdvertisementVO vo) throws IllegalStateException, IOException{
+		if(vo.getFile() != null) {
+			MultipartFile f = vo.getFile(); 
+			f.transferTo(
+					Paths.get(env.getProperty("itjobs.upload.path"), f.getOriginalFilename()));
+			vo.setAdv_img(f.getOriginalFilename());
+		}
+		
+		
+	}
+	
 	public void insertAdv(HttpServletRequest request, HttpSession session) throws Exception {
 
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;

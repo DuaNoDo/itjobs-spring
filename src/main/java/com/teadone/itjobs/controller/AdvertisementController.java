@@ -30,14 +30,15 @@ public class AdvertisementController {
 	
 	@RequestMapping(value = "/AddAdvWrite", method = RequestMethod.POST)
 	public String addAdv(AdvertisementVO vo, HttpSession session) throws Exception {
-		log.info(vo.toString());
+		
+		//log.info(vo.toString());
 		//req.get
 		//for(Ereq.getFileMap().entrySet()
 		//req.getFileNames()) {
 			
 			
 		//}
-		//service.insertAdv(request, session);
+		service.insertAdv(vo);
 
 		return "redirect:index";
 
