@@ -23,21 +23,13 @@ public class AdvertisementController {
 	@Autowired
 	private AdvertisementService service;
 
-	//@PostConstruct
-	//public void init() {
-		
-	//}
 	
 	@RequestMapping(value = "/AddAdvWrite", method = RequestMethod.POST)
 	public String addAdv(AdvertisementVO vo, HttpSession session) throws Exception {
 		
-		//log.info(vo.toString());
-		//req.get
-		//for(Ereq.getFileMap().entrySet()
-		//req.getFileNames()) {
+
 			
-			
-		//}
+		vo.setAdv_company(session.getAttribute("user").toString());
 		service.insertAdv(vo);
 
 		return "redirect:index";

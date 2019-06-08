@@ -120,4 +120,12 @@ public class MemberController {
 			response.getWriter().println("cannot use this id");	
 		
 	}
+	@Postmapping(value="/updateCMem")
+	public String upCMem(CMemVO vo){
+	mapper.upCMem(vo);
+	}
+	@PostMapping(value="/updatePMem")
+	public String upPMem(PMemVO vo){
+	mapper.uppMem(vo);
+	}
 }

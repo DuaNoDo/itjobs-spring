@@ -30,7 +30,7 @@
 		select IT_pass from IT_personal_member where IT_id=#{IT_id} and IT_name=#{IT_name} and IT_mail='${IT_mail1}@${IT_mail2}'
 	</select>
 	
-	<update id="modifyPersonalMember" parameterType="PMemVO">
+	<update id="upPMem" parameterType="PMemVO">
 		update IT_personal_member set IT_pass=#{IT_pass} , IT_name=#{IT_name} , IT_phone=#{IT_phone} , IT_zip=#{IT_zip}, IT_addr='${IT_addr1} , ${IT_addr2}' where IT_id=#{IT_id} and IT_num=#{IT_num}
 	</update>
 	
@@ -68,7 +68,7 @@
 		select IT_C_pass from IT_company_member where IT_C_id=#{IT_C_id} and IT_C_name=#{IT_C_name} and IT_C_mail='${IT_C_mail1}@${IT_C_mail2}',
 	</select>
 	
-	<update id="modifyCompanyMember" parameterType="CMemVO">
+	<update id="upCMem" parameterType="CMemVO">
 		update IT_company_member set IT_C_pass=#{IT_C_pass} , IT_C_name=#{IT_C_name} , IT_C_phone=#{IT_C_phone} , IT_C_zip=#{IT_C_zip}, IT_C_addr='${IT_C_addr1} , ${IT_C_addr2}' where IT_C_id=#{IT_C_id} and IT_C_num=#{IT_C_num}
 	</update>
 	<update id="updateLastLog" parameterType="CMemVO">
