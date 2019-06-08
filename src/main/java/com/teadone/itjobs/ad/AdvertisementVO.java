@@ -1,6 +1,9 @@
 package com.teadone.itjobs.ad;
 
 import java.sql.Timestamp;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -21,4 +24,7 @@ public class AdvertisementVO {
     private String IT_id;
     private String[] IT_ids;
     private String companySort;
+    private MultipartFile file;
+    
+    
 }
