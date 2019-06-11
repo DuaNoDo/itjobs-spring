@@ -16,7 +16,7 @@
 		select * from advertisement where adv_display=#{adv_display}
 	</select>
 	
-	<select id="readSelectAdvertisement" parameterType="AdvertisementVO" resultType="AdvertisementVO">
+	<select id="getAdvCont" parameterType="AdvertisementVO" resultType="AdvertisementVO">
 		
 		select * from advertisement where adv_num = ${adv_num}
 	</select>
@@ -28,8 +28,10 @@
 		select * from advertisement where adv_num = ${adv_num}
 	</select>
 	
-	<update id="updateAdvertisement" parameterType="AdvertisementVO">
-		update advertisement set adv_name=${adv_name},adv_email=${adv_email},adv_company=${adv_company},adv_content=${adv_content},adv_img=${adv_img} where adv_num=${adv_num}
+	<update id="advUpdate" parameterType="AdvertisementVO">
+		update advertisement 
+		set adv_name=${adv_name}, adv_email=${adv_email}, adv_company=${adv_company}, adv_content=${adv_content} 
+		where adv_num=${adv_num}
 	</update>
 	
 	<delete id="deleteAdvertisement" parameterType="AdvertisementVO">

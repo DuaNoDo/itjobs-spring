@@ -10,10 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.teadone.itjobs.AdvertisementService;
+import com.teadone.itjobs.WebConfig;
 import com.teadone.itjobs.ad.AdvertisementMapper;
 import com.teadone.itjobs.ad.AdvertisementVO;
 import com.teadone.itjobs.notice.NoticeMapper;
@@ -34,17 +36,20 @@ public class IndexController {
 	
 	@Autowired
 	private NoticeMapper nmapper;
+	
+	
+	
 
 	@GetMapping(value = { "/", "index" })
 	public String home(HttpSession session, ModelMap model) {
 		AdvertisementVO param = new AdvertisementVO();
 		param.setAdv_display("top");
 		model.put("tAdv", mapper.getAdvertisement(param));
-
+		
 		AdvertisementVO mparam = new AdvertisementVO();
 		mparam.setAdv_display("mid");
-		model.put("mAdv", service.getAdvertisement(mparam).subList(0, 12));
-
+		//model.put("mAdv", service.getAdvertisement(mparam).subList(0, 12));
+		model.put("mAdv", service.getAdvertisement(param));
 		model.put("notice", nmapper.getNotice());
 		return "index";
 
@@ -82,4 +87,13 @@ public class IndexController {
 		return "/join";
 	}
 
+	
+	@RequestMapping(value = "/content/{num}")
+	public String getContent(@PathVariable int num, ModelMap model) {
+		AdvertisementVO vo= new AdvertisementVO();
+		vo.setAdv_num(num);
+		model.put("adv",mapper.getAdvCont(vo));
+
+		return "/content";
+	}
 }

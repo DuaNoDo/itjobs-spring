@@ -172,17 +172,18 @@
 					<!-- 내용 넣을 곳 -->
 				
 					<p>글쓰기</p>
-					<form method="post" name="writeform" action="/AddAdvWrite" th:action="@{/AddAdvWrite}" enctype="multipart/form-data">
+					<form method="post" name="writeform" action="/advUpdateForm/" th:action="@{/advUpdateForm/{num}(num=${adv.adv_num})}" enctype="multipart/form-data">
 						<table>
-							<tr>
-								<td align="right" colspan="2"><a href="list.jsp"> 글목록</a>
-								</td>
-							</tr>
-							
 							<tr>
 								<td width="70" align="center">광고 이름</td>
 								<td width="330" align="left">
-								<input type="text" size="40" maxlength="50" name="adv_name">
+									<input type="text" size="40" maxlength="50" name="adv_name" value="">
+								</td>
+							</tr>
+							<tr>
+								<td width="70" align="center">광고 위치</td>
+								<td width="330" align="left">
+									<input type="text" size="40" maxlength="50" name="adv_display">
 								</td>
 							</tr>
 							<tr>
