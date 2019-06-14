@@ -25,7 +25,18 @@
 	<script type="text/javascript"
 		src="http://code.jquery.com/jquery-2.1.0.min.js">
 	</script>
-
+	<script type="text/javascript" th:inline="javascript">
+$(document).ready(function() { 
+	/* <![CDATA[ */		
+	if(/*[[${script}]]*/ != null){
+		var get = /*[[ ${script} ]]*/;
+		alert(get);
+	}
+	/* ]]> */
+	
+});
+</script>
+	
 </head>
 <body>
    <header class="header">
