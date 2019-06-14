@@ -13,6 +13,7 @@ public interface AdvertisementMapper {
 	public int addAdvertisement(AdvertisementVO vo);
 	public AdvertisementVO getAdvCont(AdvertisementVO vo);
 	public int advUpdate(AdvertisementVO vo);
+	public int advDelete(AdvertisementVO vo);
 
 	
 	//searchList

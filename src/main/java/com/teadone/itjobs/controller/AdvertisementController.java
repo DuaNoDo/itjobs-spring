@@ -48,15 +48,15 @@ public class AdvertisementController {
 	public String advUpdate(AdvertisementVO vo, ModelMap model) {
 		service.advUpdate(vo);
 
-		return "redirect:index";
+		return "/index";
 	}
 	
-	@RequestMapping(value = "/advDelete/{num}")
+	@RequestMapping(value = "/advDelete")
 	public String advDelete(@PathVariable int num, ModelMap model) {
 		AdvertisementVO vo= new AdvertisementVO();
 		vo.setAdv_num(num);
-		
+		service.advDelete(vo);
 
-		return "redirect:index";
+		return "/index";
 	}
 }

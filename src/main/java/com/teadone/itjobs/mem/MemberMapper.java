@@ -8,9 +8,14 @@ public interface MemberMapper {
 	public int checkPMemDup(PMemVO vo);
 	public int pJoin(PMemVO vo);
 	public int upPMem(PMemVO vo);
+	public String pFindId(PMemVO vo);
+	public String pFindPw(PMemVO vo);
+	
 	
 	public String checkCMem(CMemVO vo);
 	public int checkCMemDup(CMemVO vo);
 	public int cJoin(CMemVO vo);
 	public int upCMem(CMemVO vo);
+	public String cFindId(CMemVO vo);
+	public String cFindPw(CMemVO vo);
 }

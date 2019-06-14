@@ -14,7 +14,7 @@
 		'${IT_addr1} , ${IT_addr2}',now())
 	</insert> 
 
-	<select id="searchPersonalMember" parameterType="PMemVO" resultType="String">
+	<select id="pFindId" parameterType="PMemVO" resultType="String">
 		select IT_id from IT_personal_member where IT_name=#{IT_name} and IT_mail='${IT_mail1}@${IT_mail2}'
 	</select>
 	
@@ -26,7 +26,7 @@
 		select count(*) from IT_personal_member where IT_id=#{IT_id}		
 	</select>
 	
-	<select id="searchPwPersonalMember" parameterType="PMemVO" resultType="String">
+	<select id="pFindPw" parameterType="PMemVO" resultType="String">
 		select IT_pass from IT_personal_member where IT_id=#{IT_id} and IT_name=#{IT_name} and IT_mail='${IT_mail1}@${IT_mail2}'
 	</select>
 	
@@ -52,7 +52,7 @@
 		'${IT_C_addr1} , ${IT_C_addr2}',now())
 	</insert>
 	
-	<select id="searchCompanyMember" parameterType="CMemVO" resultType="String">
+	<select id="cFindId" parameterType="CMemVO" resultType="String">
 		select IT_C_id from IT_company_member where IT_C_name=#{IT_C_name} and IT_C_mail='${IT_C_mail1}@${IT_C_mail2}',
 	</select>
 	
@@ -64,7 +64,7 @@
 		select count(*) from IT_company_member where IT_C_id=#{IT_C_id}		
 	</select>
 	
-	<select id="searchPwCompanyMember" parameterType="CMemVO" resultType="String">
+	<select id="cFindPw" parameterType="CMemVO" resultType="String">
 		select IT_C_pass from IT_company_member where IT_C_id=#{IT_C_id} and IT_C_name=#{IT_C_name} and IT_C_mail='${IT_C_mail1}@${IT_C_mail2}',
 	</select>
 	

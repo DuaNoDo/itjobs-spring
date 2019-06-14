@@ -12,7 +12,7 @@ public class ITjobsApplication {
 	public static void main(String[] args) {
 		
 		SpringApplication app = new SpringApplication(ITjobsApplication.class);
-		app.setBannerMode(Mode.OFF); // Disable banner
+		//app.setBannerMode(Mode.OFF); // Disable banner
 		app.run(args);
 
 		

@@ -172,7 +172,7 @@
 									<li><input type="text" name="IT_id" id="id" class="login_input"/></li>
 									<br> <br>
 									<li><input type="password" name="IT_pass" id="password" class="login_input" /></li>
-									<li><a href="IT_mem_find.jsp" id="idPw"><span>ID/PW찾기</span></a></li>
+									<li><a href="/memFind" th:href="@{/memFind}" id="idPw"><span>ID/PW찾기</span></a></li>
 								</div>
 							</ul>
 							
@@ -193,7 +193,7 @@
 									<li><input type="text" name="IT_C_id" id="id" class="login_input"/></li>
 									<br> <br>
 									<li><input type="password" name="IT_C_pass" id="password" class="login_input" /></li>
-									<li><a href="IT_mem_find.jsp" id="idPw">ID/PW찾기</a></li>
+									<li><a href="/memFind" th:href="@{/memFind}" id="idPw">ID/PW찾기</a></li>
 								</div>
 							</ul>
 							
@@ -214,7 +214,7 @@
  
     <!-- START: Scripts -->
 
-    <script src="./assets/js/combined.js"></script>
+   	<script src="assets/js/combined.js" th:src="@{/js/combined.js}"></script>
     <script>
     function personal(){
     	document.getElementById("mem_type_personal").style.display="block";

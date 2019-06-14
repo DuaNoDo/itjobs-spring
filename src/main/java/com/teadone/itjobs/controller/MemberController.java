@@ -131,6 +131,27 @@ public class MemberController {
 		mapper.upPMem(vo);
 		return "redirect/index";
 	}
+	@RequestMapping(value="/memFind")
+	public String memFind() {
+		return "/memFind";
+	}
+	@RequestMapping(value="/cFindId" ,method=RequestMethod.POST)
+	public String cFindId() {
+		return null;
+	}
+	@RequestMapping(value="/cFindPw" ,method=RequestMethod.POST)
+	public String cFindPw() {
+		return null;
+	}
+	@RequestMapping(value="/pFindId" ,method=RequestMethod.POST)
+	public String pFindId() {
+		return null;
+	}
+	@RequestMapping(value="/pFindPw" ,method=RequestMethod.POST)
+	public String pFindPw() {
+		return null;
+	}
+	
 }
 
 

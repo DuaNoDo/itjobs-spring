@@ -33,8 +33,10 @@
 		set adv_name=${adv_name}, adv_email=${adv_email}, adv_company=${adv_company}, adv_content=${adv_content} 
 		where adv_num=${adv_num}
 	</update>
-	
-	<delete id="deleteAdvertisement" parameterType="AdvertisementVO">
+	<delete id="advDelete" parameterType="AdvertisementVO">
+		delete from advertisement where adv_num = ${adv_num}
+	</delete>
+	<delete id="advsDelete" parameterType="AdvertisementVO">
 		delete from advertisement where adv_num in	
 		<foreach collection="adv_nums" item="item" index="index" open="(" close=")" separator=",">
 		    #{item}

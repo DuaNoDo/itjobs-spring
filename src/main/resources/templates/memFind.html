@@ -1,0 +1,421 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>ITJobs</title>
+
+<meta name="keywords" content="IT,Jobs,ITJobs">
+<meta name="author" content="Won">
+<link rel="icon" type="image/png" href="../static/images/icon.png"
+	th:href="@{/images/icon.png}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- START: Styles -->
+
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700"
+	rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="../static/css/combined.css"
+	th:href="@{/css/combined.css}">
+<link rel="stylesheet" href="./assets/css/login.css" th:href="@{/css/login.css}">
+<!-- END: Styles -->
+<style>
+</style>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-2.1.0.min.js">
+	
+</script>
+
+</head>
+<body>
+	<header class="header">
+		<!--
+        START: Navbar
+    -->
+
+		<nav
+			class="navbar navbar-top navbar-sticky navbar-transparent navbar-white-text-on-top">
+			<div class="container">
+				<div class="nav-table">
+					<a href="index" class="nav-logo"> <img
+						src="../static/images/logo-light.png"
+						th:src="@{/images/logo-light.png}" alt="" width="85"
+						class="nav-logo-onscroll"> <img
+						src="../static/images/logo.png" th:src="@{/images/logo.png}"
+						alt="" width="85">
+					</a>
+
+					<ul class="nav nav-right hidden-md-down"
+						data-nav-mobile="#nav-mobile">
+						<li>
+							<table>
+								<tbody>
+									<tr>
+										<form method="get" action="IT_search.jsp" name="search">
+											<td style="border-bottom: 1.5px solid rgba(0, 0, 0, 0.3);">
+												<select name="sort" class="sort"
+												style="font-color: #AAAAAA;">
+													<option value="adv_company">회사</option>
+													<option value="adv_content">내용</option>
+													<option value="adv_name">광고명</option>
+											</select>
+											</td>
+											<td style="border-bottom: 1.5px solid rgba(0, 0, 0, 0.3);">
+												<input class="form-control" type="text" name="keyword"
+												placeholder="내용을 입력하세요" size="30"
+												style="background: rgba(255, 255, 255, 0.3); border-radius: 8px;">
+											</td>
+											<td><input TYPE="IMAGE" class="searchImg"
+												src="assets/images/search.png"
+												th:src="@{/images/search.png}" weight="25px" height="25px"
+												onclick="document.search.submit()" align="absmiddle">
+											</td>
+										</form>
+									</tr>
+								</tbody>
+							</table>
+						</li>
+
+						<li id="dropdown"><a href="#">상세검색</a>
+							<div class="dropdown-content">
+								<a href="#">구인정보</a> <a href="#">채용정보</a>
+							</div></li>
+						<li><a href="list.jsp">커뮤니티</a></li>
+
+						<li id="dropdown"><a href="IT_logIn"
+							th:href="${session.user == null} ? @{/IT_logIn} : @{/logout}">
+								<span
+								th:text="${session.user == null} ? '로그인' : ${session.user}"></span>
+						</a>
+							<div class="dropdown-content">
+								<a th:href="(${session.logOL})"><span
+									th:text="(${session.logout})"></span></a> <a href="#">Link 2</a> <a
+									href="#">Link 3</a>
+							</div></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- END: Navbar -->
+
+	</header>
+	<div class="main">
+
+		<!-- START: Header Title -->
+		<div class="header-title header-title-full">
+			<div class="bg-image">
+				<div style="background-image: url('assets/images/city1.jpg');"></div>
+				<div class="bg-image-overlay"
+					style="background-color: rgba(00, 00, 00, 0.2);"></div>
+			</div>
+			<div class="header-table">
+				<div class="header-table-cell">
+					<!-- 내용 넣을 곳 -->
+
+					<form action="#" style="margin-top: -100px; margin-top: 200px;">
+						<input type="button" name="IT_mem_type" id="mem_type1"
+							value="개인회원" onclick="personal();" class="IT_btn"
+							style="border-bottom: none; background-color: rgba(255, 255, 255, 0); color: rgb(29, 106, 150);" />
+						<input type="button" name="IT_mem_type" id="mem_type" value="회사회원"
+							onclick="company();" class="IT_btn" />
+					</form>
+					<div style="margin: 0 auto;">
+						<div id="mem_type_personal"
+							style="margin: 0 auto; background-color: rgba(255, 255, 255, 0.7); width: 500px; height: 450px; margin-top: 0px; border-top: none;">
+
+
+							
+
+							<form id="form" name="form" method="post"
+								action="/pFindId" th:action="@{/pFindId}" class="IT_loginFormBox"
+								style="border: none;">
+								<!-- 아이디 찾기 -->
+								<ul class="container">
+									<div>
+										<li><input type="text" name="IT_name" id="name"
+											class="login_input" placeholder="이름" /></li>
+										<li><input type="text" id="email" name="IT_mail1"
+											class="login_input" placeholder="example"
+											style="width: 80px; margin-right: 5px; font-size: 12px;" />
+											<input id="at" type="button" value="@" class="login_input" />
+											<input type="text" id="email2" name="IT_mail2"
+											class="login_input" placeholder="ex.com"
+											style="font-size: 12px; width: 90px; margin-right: 5px;" />
+											<select id="email1" name="IT_mail2" class="login_input"
+											onChange="mail();">
+												<option value="" selected>선택하세요</option>
+												<option value="naver.com">naver.com</option>
+												<option value="gmail.com">gmail.com</option>
+												<option value="hanmail.net">hanmail.net</option>
+												<option value="nate.com">nate.com</option>
+												<option value="1">직접입력</option>
+										</select></li>
+									</div>
+								</ul>
+								<button type="submit" onclick="companyIdFind();" id="button101"
+									class="IT_btn">ID찾기</button>
+								<br>
+								<hr id="hr">
+
+							</form>
+							<!-- 비밀번호 -->
+
+							<form id="form1" name="form" method="post"
+								action="/pFindPw" th:action="@{/pFindPw}" class="IT_loginFormBox"
+								style="border: none;">
+								<ul class="container">
+									<div>
+										<li><input type="text" name="IT_id" id="id"
+											class="login_input" placeholder="아이디"
+											style="margin-top: -21px;" /></li>
+										<li><input type="text" name="IT_mail1" id="email3"
+											class="login_input" placeholder="example" /> <input
+											type="button" value="@" id="at2" class="login_input" /> <input
+											type="text" id="email5" name="IT_mail2" class="login_input"
+											placeholder="ex.com" /> <select id="email4" name="IT_mail2"
+											class="login_input" onChange="mail1();">
+												<option value="" selected>선택하세요</option>
+												<option value="naver.com">naver.com</option>
+												<option value="gmail.com">gmail.com</option>
+												<option value="hanmail.net">hanmail.net</option>
+												<option value="nate.com">nate.com</option>
+												<option value="1">직접입력</option>
+										</select></li>
+									</div>
+								</ul>
+								<button type="submit" onclick="companyIdFind();" id="button102"
+									class="IT_btn">PW찾기</button>
+							</form>
+							<script>
+								
+							</script>
+							<script>
+								
+							</script>
+							<!--
+		 	<input type="text" name="IT_name" id="name"
+				class="login_input" style="width: 126px; margin-right: 10px;"
+				placeholder="이름" />  style="width: 126px;"
+	-->
+						</div>
+						<div id="mem_type_company"
+							style="margin: 0 auto; display: none; background-color: rgba(255, 255, 255, 0.7); width: 500px; height: 450px; margin-top: 0px; border-top: none;">
+
+							<div id="stylized" class="myform" style="margin-top: 00px">
+								<form id="form" name="form" method="post"
+									action="/cFindPw" th:action="@{/cFindPw}">
+
+									<p>회사회원 아이디 찾기</p>
+
+									<label>Name <span class="small">이름 입력</span>
+									</label> <input type="text" name="IT_C_name" id="name" />
+
+
+									<div class="spacer"></div>
+									<span> <label>Email <span class="small">이메일주소</span>
+									</label> <input type="text" name="IT_C_mail1" id="email" class="email" /><span
+										class="moreInput">@</span> <input type="text"
+										name="IT_C_mail2" id="email2" class="email2" /> <select
+										id="email1" name="IT_C_mail2" class="moreInput">
+											<option selected>직접입력</option>
+											<option value="naver.com">naver.com</option>
+											<option value="gmail.com">gmail.com</option>
+											<option value="hanmail.net">hanmail.net</option>
+											<option value="nate.com">nate.com</option>
+									</select>
+
+									</span> <label>Phone <span class="small">전화번호</span>
+									</label> <input type="text" name="IT_C_phone1" id="phone2"
+										style="width: 100px" /> <span class="moreInput">-</span> <input
+										type="text" name="IT_C_phone2" id="phone2"
+										style="width: 100px" /> <span class="moreInput">-</span> <input
+										type="text" name="IT_C_phone3" id="phone3"
+										style="width: 100px" />
+
+
+									<div class="spacer"></div>
+									<button type="submit" onclick="companyIdFind();">Sign-up</button>
+									<div class="spacer"></div>
+
+								</form>
+								<form id="form" name="form" method="post"
+									action="/cFindId" th:action="@{/cFindId}">
+
+									<p>회사회원 비밀번호 찾기</p>
+									<label>ID <span class="small">아이디</span>
+									</label> <input type="text" name="IT_C_id" id="id" />
+									<div class="spacer"></div>
+									<label>Name <span class="small">이름 입력</span>
+									</label> <input type="text" name="IT_C_name" id="name" />
+
+
+									<div class="spacer"></div>
+									<span> <label>Email <span class="small">이메일주소</span>
+									</label> <input type="text" name="IT_C_mail1" id="email" class="email" /><span
+										class="moreInput">@</span> <input type="text"
+										name="IT_C_mail2" id="email2" class="email2" /> <select
+										id="email1" name="IT_C_mail2" class="moreInput">
+											<option selected>직접입력</option>
+											<option value="naver.com">naver.com</option>
+											<option value="gmail.com">gmail.com</option>
+											<option value="hanmail.net">hanmail.net</option>
+											<option value="nate.com">nate.com</option>
+									</select>
+
+									</span> <label>Phone <span class="small">전화번호</span>
+									</label> <input type="text" name="IT_C_phone1" id="phone2"
+										style="width: 100px" /> <span class="moreInput">-</span> <input
+										type="text" name="IT_C_phone2" id="phone2"
+										style="width: 100px" /> <span class="moreInput">-</span> <input
+										type="text" name="IT_C_phone3" id="phone3"
+										style="width: 100px" />
+
+
+									<div class="spacer"></div>
+									<button type="submit" onclick="companyIdFind();">Sign-up</button>
+									<div class="spacer"></div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- 여기까지 내용 넣기 -->
+				</div>
+			</div>
+		</div>
+
+		<div id="header-title-scroll-down"></div>
+
+		<!-- END: Header Title -->
+	</div>
+
+
+
+
+	<!-- START: Scripts -->
+
+	<script src="assets/js/combined.js" th:src="@{/js/combined.js}"></script>
+	<script>
+		function personal() {
+			document.getElementById("mem_type_personal").style.display = "block";
+			document.getElementById("mem_type_company").style.display = "none";
+			//document.getElementById("mem_type_personal").style.backgroundColor="rgba(255, 255, 255, 0.6)";
+			//document.getElementById("mem_type_company").style.backgroundColor="rgba(255, 255, 255, 0.6)";
+			document.getElementById("mem_type1").style.borderBottom = "none";
+			document.getElementById("mem_type").style.borderBottom = "1px solid #000";
+			document.getElementById("mem_type1").style.backgroundColor = "rgba(255, 255, 255, 0)";
+			document.getElementById("mem_type").style.backgroundColor = "#1D6A96";
+			document.getElementById("mem_type1").style.color = "#1D6A96";
+			document.getElementById("mem_type").style.color = "#ffffff";
+		}
+
+		function company() {
+			document.getElementById("mem_type_personal").style.display = "none";
+			document.getElementById("mem_type_company").style.display = "block";
+			//document.getElementById("mem_type_personal").style.backgroundpColor="rgba(255, 255, 255, 0.6)";
+			//document.getElementById("mem_type_company").style.backgroundColor="rgba(255, 255, 255, 0.6)";
+			document.getElementById("mem_type1").style.borderBottom = "1px solid #000";
+			document.getElementById("mem_type").style.borderBottom = "none";
+			document.getElementById("mem_type1").style.backgroundColor = "#1D6A96";
+			document.getElementById("mem_type").style.backgroundColor = "rgba(255, 255, 255, 0)";
+			document.getElementById("mem_type1").style.color = "#ffffff";
+			document.getElementById("mem_type").style.color = "#1D6A96";
+		}
+		/* function companyIdFind(){
+		    var gsWin = window.open('IT_company_find_pro.jsp','IT_company_find_pro','width=300,height=300');
+		    var frm =document.form;
+		    frm.action = 'IT_company_find_pro.jsp';
+		    frm.target ="IT_company_find_pro";
+		    frm.method ="post";
+		    frm.submit();
+		   }
+		function personalIdFind(){
+		    var gsWin = window.open('IT_personal_find_pro.jsp','IT_personal_find_pro','width=300,height=300');
+		    var frm =document.form;
+		    frm.action = 'IT_personal_find_pro.jsp';
+		    frm.target ="IT_personal_find_pro";
+		    frm.method ="post"; 
+		    frm.submit();
+		   }
+		 */
+
+		/*personal*/
+		function mail() {
+			var m, m1;
+			//m = email_select.IT_mail2;
+			//m1 = email_select1.IT_mail2;
+
+			m = document.getElementById("email2"); //input
+			m1 = document.getElementById("email1"); //select	
+
+			if (m1.value == '1') {
+				m.readonly = false;
+				m.value = '';
+				m.focus();
+			} else {
+				m.readonly = true;
+				m.value = m1.value;
+			}
+		}
+
+		function mail1() {
+			var m, m1;
+
+			m = document.getElementById("email5"); //input
+			m1 = document.getElementById("email4"); //select	
+
+			if (m1.value == '1') {
+				m.readonly = false;
+				m.value = '';
+				m.focus();
+			} else {
+				m.readonly = true;
+				m.value = m1.value;
+			}
+		}
+		/*company*/
+		function mail00() {
+			var m, m1;
+			//m = email_select.IT_mail2;
+			//m1 = email_select1.IT_mail2;
+
+			m = document.getElementById("email22"); //input
+			m1 = document.getElementById("email11"); //select	
+
+			if (m1.value == '1') {
+				m.readonly = false;
+				m.value = '';
+				m.focus();
+			} else {
+				m.readonly = true;
+				m.value = m1.value;
+			}
+		}
+
+		function mail11() {
+			var m, m1;
+
+			m = document.getElementById("email55"); //input
+			m1 = document.getElementById("email44"); //select	
+
+			if (m1.value == '1') {
+				m.readonly = false;
+				m.value = '';
+				m.focus();
+			} else {
+				m.readonly = true;
+				m.value = m1.value;
+			}
+		}
+	</script>
+	<!-- END: Scripts -->
+
+
+</body>
+
+</html>
