@@ -51,22 +51,21 @@ public class AdvertisementService implements AdvertisementMapper{
 	@Override
 	public int getAdvCount(AdvertisementVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return mapper.getAdvCount(vo);
 	}
 	@Override
 	public AdvertisementVO readSelectAdvertisement(AdvertisementVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return mapper.readSelectAdvertisement(vo);
 	}
 	@Override
 	public int addAdvertisement(AdvertisementVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return mapper.addAdvertisement(vo);
 	}
 	@Override
 	public AdvertisementVO getAdvCont(AdvertisementVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.getAdvCont(vo);
 	}
 
 	@Override
@@ -86,7 +85,7 @@ public class AdvertisementService implements AdvertisementMapper{
 	@Override
 	public AdvertisementVO getSearchAdvContent(AdvertisementVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return mapper.getSearchAdvContent(vo);
 	}
 	@Override
 	public ArrayList<AdvertisementVO> getSearchAdv(AdvSearchVO vo) {

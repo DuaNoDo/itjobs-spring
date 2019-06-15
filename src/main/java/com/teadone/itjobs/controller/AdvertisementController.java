@@ -81,9 +81,15 @@ public class AdvertisementController {
 		AdvSearchVO svo = new AdvSearchVO();
 		svo.setMyId(session.getAttribute("user").toString());
 		List<String> adv_nums = service.getMyLikeAdvNum(svo);
-		vo.setAdv_nums(adv_nums.stream().toArray(String[]::new));
-		model.put("mAdv", service.getMyLikeAdv(vo));
-		return "/myLikeAdv";
+		if(adv_nums.size()==0) {
+			model.put("script", "좋아하는 광고를 등록하라구~");
+			return "/index";
+		}
+		else {
+			vo.setAdv_nums(adv_nums.stream().toArray(String[]::new));
+			model.put("mAdv", service.getMyLikeAdv(vo));
+			return "/myLikeAdv";
+		}
 		
 	}
 }

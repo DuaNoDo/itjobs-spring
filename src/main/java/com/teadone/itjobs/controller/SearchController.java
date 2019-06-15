@@ -31,7 +31,7 @@ public class SearchController {
 		return "/searchList";
 		
 	}
-	@RequestMapping(value="/earchList", method = RequestMethod.GET)
+	@RequestMapping(value="/searchCate", method = RequestMethod.GET)
 	public String earchAdv(HttpSession session, HttpServletRequest request ,ModelMap model) {
 		AdvSearchVO vo=new AdvSearchVO();
 		vo.setSort(request.getParameter("sort"));
@@ -42,4 +42,5 @@ public class SearchController {
 		return "/searchList";
 		
 	}
+	
 }

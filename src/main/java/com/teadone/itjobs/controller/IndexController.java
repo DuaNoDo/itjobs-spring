@@ -81,6 +81,7 @@ public class IndexController {
 	public String getContent(@PathVariable int num, ModelMap model) {
 		AdvertisementVO vo= new AdvertisementVO();
 		vo.setAdv_num(num);
+		System.out.println(num);
 		model.put("adv",service.getAdvCont(vo));
 
 		return "/content";
