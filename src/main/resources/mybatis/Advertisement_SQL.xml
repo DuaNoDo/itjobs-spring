@@ -43,7 +43,7 @@
 		</foreach>
 	</delete>
 	
-	<select id="getMyLikeAdvertisementNum" parameterType="AdvertisementVO" resultType="String">
+	<select id="getMyLikeAdvNum" parameterType="AdvertisementVO" resultType="String">
 		select adv_num from likeadv where IT_id=#{myId}
 	</select>
 	
@@ -51,21 +51,21 @@
 		select count(adv_num) from likeadv where IT_id=#{myId}
 	</select>
 	
-	<select id="getMyLikeAdvertisement" parameterType="AdvertisementVO" resultType="AdvertisementVO">
+	<select id="getMyLikeAdv" parameterType="AdvertisementVO" resultType="AdvertisementVO">
 		select * from advertisement where adv_num in	
 		<foreach collection="adv_nums" item="item" index="index" open="(" close=")" separator=",">
 		    #{item}
 		</foreach>
 	</select>
 	
-	<insert id="addMyLikeAdvertisement" parameterType="AdvertisementVO" >
+	<insert id="addMyLikeAdv" parameterType="AdvertisementVO" >
 		insert into likeadv values
 		<foreach collection="adv_nums" item="item" index="index" separator=",">
 			 (#{IT_id},#{item})   
 		</foreach>
 	</insert>
 	
-	<delete id="delMyLikeAdvertisement" parameterType="AdvertisementVO">
+	<delete id="delMyLikeAdv" parameterType="AdvertisementVO">
 		delete from likeadv where IT_id=#{IT_id} and adv_num in	
 		<foreach collection="adv_nums" item="item" index="index" open="(" close=")" separator=",">
 		    #{item}

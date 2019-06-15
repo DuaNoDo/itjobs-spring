@@ -50,7 +50,7 @@
                     		<table>
                     		<tbody>
                     			<tr>
-                    				<form method="get" action="/searchList" name="search" >
+                    				<form method="get" action="/earchList" name="search" >
 	                    				<td style="border-bottom:1.5px solid rgba(0,0,0,0.3);">
 		                    				<select name="sort" class="sort" style="font-color:#AAAAAA;" >
 												<option value="adv_company">회사</option>
@@ -89,7 +89,9 @@
                             </a>
                             <div class="dropdown-content">
 							    <a th:href="${session.logOL==null}? @{/join} : ${session.logOL}"><span th:text="${session.logout==null}? '회원가입' : ${session.logout}"></span></a>
-							    <a href="#">Link 2</a>
+							    <a th:href="${session.logOL==null}? @{/join} : @{/myLikeAdv}">
+							    	<span th:text="${session.logout==null}? '회원가입' : '좋아요 광고'"></span>
+							    </a>
 							    <a href="#">Link 3</a>
 							</div>
 						</li>

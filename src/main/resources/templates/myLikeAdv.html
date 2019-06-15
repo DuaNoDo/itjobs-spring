@@ -131,8 +131,7 @@ $(document).ready(function() {
 					<!-- 내용 넣을 곳 -->
 
 					<div class="container1" style="margin-top:200px;">
-								<form action="/addMyLikeAdv" th:action="@{/addMyLikeAdv}" method="post" id="list">
-								<input type="hidden" name="IT_id" th:value="${session.user}"/>
+								<form action="/delMyLikeAdv" method="post" th:action="@{/delMyLikeAdv}" id="list">
 									<table>
 										<thead>
 											<tr>
@@ -145,22 +144,22 @@ $(document).ready(function() {
 											</tr>
 										</thead>
 										<tbody>
-											
-											<tr height="5" th:each="sa : ${sAdv}">
+			
+											<tr height="5" th:each="ma : ${mAdv}">
 													<td align="center">
 												<input type="checkBox" name="adv_nums"
-													th:value="${{sa.adv_num}}">
+													th:value="${{ma.adv_num}}">
 												</td>
 												<td width="70" align="center"></td>
-												<td width="500" align="left"> 
-												<a href="content/" th:href="@{/content/{num}(num=${sa.adv_num})}"> <span
-														th:text="${{sa.adv_name}}"></span></a>
+												<td width="500" align="left"><a
+													href="IT_search_content.jsp?num="> <span
+														th:text="${{ma.adv_name}}"></span></a>
 												<td width="100" align="left"><a href=""> <span
-														th:text="${{sa.adv_email}}"></span></a></td>
+														th:text="${{ma.adv_email}}"></span></a></td>
 												<td width="150" align="center"><span
-													th:text="${{sa.adv_reg_date}}"></span></td>
+													th:text="${{ma.adv_reg_date}}"></span></td>
 												<td width="50" align="center"><span
-													th:text="${{sa.adv_readcount}}"></span></td>
+													th:text="${{ma.adv_readcount}}"></span></td>
 			
 											</tr>
 			

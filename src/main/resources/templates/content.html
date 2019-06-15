@@ -97,9 +97,11 @@
 								th:text="${session.user == null} ? '로그인' : ${session.user}"></span>
 						</a>
 							<div class="dropdown-content">
-								<a th:href="${session.logOL==null}? @{/join} : ${session.logOL}"><span
-									th:text="${session.logout==null}? '회원가입' : ${session.logout}"></span></a>
-								<a href="#">Link 2</a> <a href="#">Link 3</a>
+							    <a th:href="${session.logOL==null}? @{/join} : ${session.logOL}"><span th:text="${session.logout==null}? '회원가입' : ${session.logout}"></span></a>
+							    <a th:href="${session.logOL==null}? @{/join} : @{/myLikeAdv}">
+							    	<span th:text="${session.logout==null}? '회원가입' : '좋아요 광고'"></span>
+							    </a>
+							    <a href="#">Link 3</a>
 							</div></li>
 
 					</ul>
@@ -156,6 +158,10 @@
 							<tr>
 								<td align="center" width="125">글내용</td>
 								<td align="left" width="375" colspan="3"><pre><span th:text="${adv.Adv_content}"></span></pre></td>
+							</tr>
+							<tr>
+								<td><a href="/advUpdate/${adv.Adv_num}" th:href="@{/advUpdateForm/{num}(num=${adv.adv_num})}">수정</a></td>
+								<td><a href="/advDelete/${adv.Adv_num}" th:href="@{/advDelete/{num}(num=${adv.adv_num})}">삭제</a></td>
 							</tr>
 						</table>
 					</form>

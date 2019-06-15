@@ -97,10 +97,12 @@
 								th:text="${session.user == null} ? '로그인' : ${session.user}"></span>
 						</a>
 							<div class="dropdown-content">
-								<a th:href="${session.logOL==null}? @{/join} : ${session.logOL}"><span
-									th:text="${session.logout==null}? '회원가입' : ${session.logout}"></span></a>
-								<a href="#">Link 2</a> <a href="#">Link 3</a>
-							</div></li>
+							    <a th:href="${session.logOL==null}? @{/join} : ${session.logOL}"><span th:text="${session.logout==null}? '회원가입' : ${session.logout}"></span></a>
+							    <a th:href="${session.logOL==null}? @{/join} : @{/myLikeAdv}">
+							    	<span th:text="${session.logout==null}? '회원가입' : '좋아요 광고'"></span>
+							    </a>
+							    <a href="#">Link 3</a>
+							</div>
 
 					</ul>
 
@@ -126,7 +128,7 @@
 
 
 					<p>글내용 보기</p>
-th:action="@{/advUpdate/{num}(num=${adv.adv_num})}"
+
 					<form action="/advUpdate/${adv.Adv_num}" th:action="@{/advUpdate/{num}(num=${adv.adv_num})}" method="post">
 						<table>
 							<tr height="30">
