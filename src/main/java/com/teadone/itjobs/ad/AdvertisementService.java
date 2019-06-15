@@ -35,8 +35,8 @@ public class AdvertisementService {
 	public void advUpdate(AdvertisementVO vo) {
 		mapper.advUpdate(vo);
 	}
-	public void advDelete(AdvertisementVO vo) {
-		mapper.advDelete(vo);
+	public int advDelete(AdvertisementVO vo) {
+		return mapper.advDelete(vo);
 		
 	}
 

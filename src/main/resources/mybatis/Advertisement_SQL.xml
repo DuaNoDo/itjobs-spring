@@ -30,8 +30,8 @@
 	
 	<update id="advUpdate" parameterType="AdvertisementVO">
 		update advertisement 
-		set adv_name=${adv_name}, adv_email=${adv_email}, adv_company=${adv_company}, adv_content=${adv_content} 
-		where adv_num=${adv_num}
+		set adv_name=#{adv_name}, adv_email=#{adv_email}, adv_company=#{adv_company}, adv_content=#{adv_content} 
+		where adv_num=#{adv_num}
 	</update>
 	<delete id="advDelete" parameterType="AdvertisementVO">
 		delete from advertisement where adv_num = ${adv_num}

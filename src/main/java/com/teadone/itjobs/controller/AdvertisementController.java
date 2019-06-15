@@ -33,7 +33,7 @@ public class AdvertisementController {
 		vo.setAdv_company(session.getAttribute("user").toString());
 		service.insertAdv(vo);
 
-		return "redirect:index";
+		return "redirect:/index";
 
 	}
 	@RequestMapping(value = "/advUpdateForm/{num}")
@@ -44,19 +44,21 @@ public class AdvertisementController {
 
 		return "/advUpdateForm";
 	}
-	@RequestMapping(value = "/advUpdate",method = RequestMethod.POST)
-	public String advUpdate(AdvertisementVO vo, ModelMap model) {
+	@RequestMapping(value = "/advUpdate/{num}",method = RequestMethod.POST)
+	public String advUpdate(@PathVariable int num, AdvertisementVO vo, ModelMap model) {
+		vo.setAdv_num(num);
 		service.advUpdate(vo);
-
-		return "/index";
+		log.debug(vo.getAdv_name());
+		return "redirect:/index";
 	}
 	
-	@RequestMapping(value = "/advDelete")
+	@RequestMapping(value = "/advDelete/{num}")
 	public String advDelete(@PathVariable int num, ModelMap model) {
 		AdvertisementVO vo= new AdvertisementVO();
 		vo.setAdv_num(num);
-		service.advDelete(vo);
-
-		return "/index";
+		if(service.advDelete(vo)==1)
+			return "redirect:/index";
+		else
+			return "redirect:/index";
 	}
 }

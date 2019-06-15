@@ -159,12 +159,8 @@
 							</tr>
 						</table>
 					</form>
-					<form action="/advUpdate/${adv.Adv_num}" th:action="@{/advUpdateForm/{num}(num=${adv.adv_num})}">
-						<input type="submit" value="글 수정"> 
-					</form>
-					<form action="/advDelete/${adv.Adv_num}" th:action="@{/advDelete/{num}(num=${adv.adv_num})}">
-						<input type="submit" value="글 삭제"> 
-					</form>
+					<a href="/advUpdate/${adv.Adv_num}" th:href="@{/advUpdateForm/{num}(num=${adv.adv_num})}"></a>
+					<a href="/advDelete/${adv.Adv_num}" th:href="@{/advDelete/{num}(num=${adv.adv_num})}"></a>
 					<!-- 여기까지 내용 넣기 -->
 				</div>
 			</div>

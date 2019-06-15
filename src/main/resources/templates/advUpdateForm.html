@@ -126,8 +126,8 @@
 
 
 					<p>글내용 보기</p>
-
-					<form action="/advUpdate/${adv.Adv_num}" th:action="@{/advUpdate}" method="post">
+th:action="@{/advUpdate/{num}(num=${adv.adv_num})}"
+					<form action="/advUpdate/${adv.Adv_num}" th:action="@{/advUpdate/{num}(num=${adv.adv_num})}" method="post">
 						<table>
 							<tr height="30">
 								<td align="center" width="125">글번호</td>
