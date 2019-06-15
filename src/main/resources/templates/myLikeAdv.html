@@ -132,6 +132,7 @@ $(document).ready(function() {
 
 					<div class="container1" style="margin-top:200px;">
 								<form action="/delMyLikeAdv" method="post" th:action="@{/delMyLikeAdv}" id="list">
+								<input type="hidden" name="IT_id" th:value="${session.user}"></input>
 									<table>
 										<thead>
 											<tr>

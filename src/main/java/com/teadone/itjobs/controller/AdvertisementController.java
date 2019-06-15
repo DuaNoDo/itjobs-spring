@@ -82,7 +82,6 @@ public class AdvertisementController {
 		svo.setMyId(session.getAttribute("user").toString());
 		List<String> adv_nums = service.getMyLikeAdvNum(svo);
 		if(adv_nums.size()==0) {
-			model.put("script", "좋아하는 광고를 등록하라구~");
 			return "/index";
 		}
 		else {
